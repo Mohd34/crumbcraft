@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flour Protein Calculator & Vital Wheat Gluten Blend Tool | CrumbCraft</title>
+  <meta name="description" content="Calculate exact flour blend ratios and vital wheat gluten (VWG) grams to boost all-purpose flour to bread flour protein strength for sourdough, pizza, and bagels.">
+  <link rel="canonical" href="https://crumbcraft.pages.dev/flour-protein-calculator.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://crumbcraft.pages.dev/flour-protein-calculator.html">
+  <meta property="og:title" content="Flour Protein Calculator & Vital Wheat Gluten Blend Tool | CrumbCraft">
+  <meta property="og:description" content="Blend any two flours or fortify with Vital Wheat Gluten to hit your exact target protein percentage.">
+  <meta property="og:image" content="https://crumbcraft.pages.dev/assets/img/favicon.svg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#D97706">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://crumbcraft.pages.dev/flour-protein-calculator.html#webapp",
+        "name": "CrumbCraft Flour Protein & Gluten Calculator",
+        "url": "https://crumbcraft.pages.dev/flour-protein-calculator.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Calculates the exact amount of Vital Wheat Gluten or high-protein flour to blend into lower-protein flours to reach desired bread dough protein strength."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://crumbcraft.pages.dev/flour-protein-calculator.html#breadcrumbs",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://crumbcraft.pages.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Flour Protein Calculator", "item": "https://crumbcraft.pages.dev/flour-protein-calculator.html" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://crumbcraft.pages.dev/flour-protein-calculator.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How much vital wheat gluten should I add to all-purpose flour to make bread flour?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For standard all-purpose flour with 10.5% protein and pure vital wheat gluten with 75% protein, you need approximately 3.1 grams of vital wheat gluten per 100 grams of flour (or roughly 15.5g per 500g of flour) to reach 12.5% bread flour strength."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the formula for calculating flour protein blends?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The Pearson square / weighted average formula is: Fortifier Weight = Total Flour × (Target Protein − Base Protein) ÷ (Fortifier Protein − Base Protein). The Base Flour Weight is then Total Flour − Fortifier Weight."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="CrumbCraft Home">
+        <svg class="logo-icon" viewBox="0 0 64 64"><path d="M10,44 C10,24 22,14 32,14 C42,14 54,24 54,44 C54,49 50,52 32,52 C14,52 10,49 10,44 Z" fill="#D97706"/><path d="M22,24 Q28,32 30,42" fill="none" stroke="#FEF3C7" stroke-width="3" stroke-linecap="round"/></svg>
+        <span>CrumbCraft</span>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Hydration</a></li>
+          <li><a href="ddt-calculator.html" class="nav-link">DDT Water Temp</a></li>
+          <li><a href="starter-feeding-schedule.html" class="nav-link">Starter Planner</a></li>
+          <li><a href="fermentation-calculator.html" class="nav-link">Bulk Ferment</a></li>
+          <li><a href="flour-protein-calculator.html" class="nav-link active">Flour Protein</a></li>
+          <li><a href="yeast-converter.html" class="nav-link">Yeast & Discard</a></li>
+          <li><a href="loaf-pan-calculator.html" class="nav-link">Pan Scaler</a></li>
+          <li><a href="seo-dashboard.html" class="nav-link" style="color:var(--brand-amber); font-weight:700;">SEO Stats</a></li>
+        </ul>
+      </nav>
+
+      <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <ul class="breadcrumbs">
+      <li><a href="index.html">Home</a></li>
+      <li aria-current="page">Flour Protein & Vital Wheat Gluten Calculator</li>
+    </ul>
+
+    <section class="hero">
+      <span class="hero-badge">Cereal Chemistry & Gluten Mechanics</span>
+      <h1>Flour Protein & Vital Wheat Gluten Calculator</h1>
+      <p class="lead">
+        Calculate the precise grams of Vital Wheat Gluten (VWG) or high-protein flour needed to fortify weaker flours. Transform all-purpose flour into high-performance artisan bread flour.
+      </p>
+    </section>
+
+    <div class="tool-nav-wrapper">
+      <ul class="tool-tabs">
+        <li class="tool-tab-item"><a href="index.html">🍞 Hydration & Scaler</a></li>
+        <li class="tool-tab-item"><a href="ddt-calculator.html">🌡️ DDT & Water Temp</a></li>
+        <li class="tool-tab-item"><a href="starter-feeding-schedule.html">⏰ Starter Feeding Planner</a></li>
+        <li class="tool-tab-item"><a href="fermentation-calculator.html">📈 Bulk Fermentation Chart</a></li>
+        <li class="tool-tab-item active"><a href="flour-protein-calculator.html">🌾 Flour Protein & Gluten</a></li>
+        <li class="tool-tab-item"><a href="yeast-converter.html">⚖️ Yeast & Discard Converter</a></li>
+        <li class="tool-tab-item"><a href="loaf-pan-calculator.html">📏 Loaf Pan Scaler</a></li>
+      </ul>
+    </div>
+
+    <!-- Calculator Grid -->
+    <div class="calc-grid">
+      <!-- Input Panel -->
+      <section class="calc-card" aria-labelledby="protein-inputs-heading">
+        <div class="calc-card-header">
+          <h2 id="protein-inputs-heading" class="calc-card-title">Blend Inputs</h2>
+          <span class="badge" style="background:var(--brand-amber-light); color:var(--brand-warm); padding:3px 10px; border-radius:12px; font-size:0.8rem; font-weight:700;">Pearson Square Math</span>
+        </div>
+
+        <form id="protein-form" onsubmit="return false;">
+          <!-- Total Flour Weight -->
+          <div class="form-group">
+            <label class="form-label" for="protein-total-flour">
+              <span>Total Flour Weight Needed for Recipe</span>
+              <span class="form-label-val" id="val-protein-total">500 g</span>
+            </label>
+            <input type="range" class="form-range" id="range-protein-total" min="100" max="2500" step="25" value="500">
+            <input type="number" class="form-input" id="num-protein-total" min="10" max="20000" value="500" style="margin-top:0.5rem;">
+          </div>
+
+          <!-- Base Flour Selection -->
+          <div class="form-group">
+            <label class="form-label" for="select-base-flour">
+              <span>Base Flour (Lower Protein)</span>
+              <span class="form-label-val" id="val-base-pct">10.5 %</span>
+            </label>
+            <select class="form-input" id="select-base-flour" style="margin-bottom:0.5rem;">
+              <option value="10.5" selected>Standard All-Purpose Flour (10.5% protein - Gold Medal, Pillsbury)</option>
+              <option value="11.7">King Arthur All-Purpose Flour (11.7% protein)</option>
+              <option value="9.0">Pastry / Soft Wheat Flour (9.0% protein)</option>
+              <option value="11.0">European French T55 Flour (11.0% protein)</option>
+              <option value="custom">Custom Base Protein %...</option>
+            </select>
+            <input type="number" class="form-input" id="num-base-protein" step="0.1" value="10.5" min="5" max="20">
+          </div>
+
+          <!-- Fortifier / Second Flour Selection -->
+          <div class="form-group">
+            <label class="form-label" for="select-fortifier-flour">
+              <span>Fortifying Agent / Second Flour</span>
+              <span class="form-label-val" id="val-fortifier-pct">75.0 %</span>
+            </label>
+            <select class="form-input" id="select-fortifier-flour" style="margin-bottom:0.5rem;">
+              <option value="75.0" selected>Vital Wheat Gluten / Gluten Flour (75.0% protein - Bob's Red Mill, Anthony's)</option>
+              <option value="14.2">High-Gluten Commercial Bread Flour (14.2% protein - King Arthur Sir Lancelot)</option>
+              <option value="13.8">Strong Whole Wheat Flour (13.8% protein)</option>
+              <option value="12.7">Standard Bread Flour (12.7% protein - King Arthur Bread Flour)</option>
+              <option value="custom">Custom Fortifier Protein %...</option>
+            </select>
+            <input type="number" class="form-input" id="num-fortifier-protein" step="0.1" value="75.0" min="10" max="90">
+          </div>
+
+          <!-- Target Protein Goal -->
+          <div class="form-group">
+            <label class="form-label" for="range-target-protein">
+              <span>Target Desired Protein Percentage</span>
+              <span class="form-label-val" id="val-target-protein">12.5 % (Artisan Country Loaf)</span>
+            </label>
+            <input type="range" class="form-range" id="range-target-protein" min="10" max="16" step="0.1" value="12.5">
+            <input type="number" class="form-input" id="num-target-protein" step="0.1" value="12.5" style="margin-top:0.5rem;">
+          </div>
+        </form>
+      </section>
+
+      <!-- Output Panel -->
+      <section class="results-card" aria-labelledby="protein-results-heading">
+        <div class="calc-card-header">
+          <h2 id="protein-results-heading" class="calc-card-title">Calculated Blend Formula</h2>
+          <span class="badge" style="background:var(--accent-olive-bg); color:var(--accent-olive); padding:3px 10px; border-radius:12px; font-size:0.8rem; font-weight:700;">Exact Balance</span>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat-box">
+            <div class="stat-label">Base Flour</div>
+            <div class="stat-value" id="res-base-grams">484.5 g</div>
+            <div class="stat-sub" id="res-base-sub">96.9% of blend</div>
+          </div>
+          <div class="stat-box highlight">
+            <div class="stat-label">Fortifier / VWG</div>
+            <div class="stat-value" id="res-fortifier-grams">15.5 g</div>
+            <div class="stat-sub" id="res-fortifier-sub">3.1% of blend</div>
+          </div>
+        </div>
+
+        <div class="hydration-distinction">
+          <h4>🧪 Blend Verification</h4>
+          <ul>
+            <li><span>Target Protein Specified:</span> <span id="verif-target">12.50%</span></li>
+            <li><span>Actual Protein Achieved:</span> <span id="verif-achieved" style="color:var(--brand-amber); font-weight:800;">12.50%</span></li>
+            <li><span>Total Combined Flour:</span> <span id="verif-total">500.0 g</span></li>
+          </ul>
+        </div>
+
+        <div class="alert alert-tip">
+          <div style="font-size:1.3rem;">💡</div>
+          <div>
+            <strong>Baker's Pro-Tip:</strong>
+            <p style="margin:0; font-size:0.825rem; color:#365314;">
+              Always whisk your Vital Wheat Gluten thoroughly into the dry flour <em>before</em> adding water. Dumping VWG directly into wet ingredients forms localized rubbery gluten clumps that will not incorporate evenly.
+            </p>
+          </div>
+        </div>
+
+        <div class="btn-group" style="margin-top:auto;">
+          <button type="button" class="btn btn-primary" id="btn-copy-protein">
+            📋 Copy Blend Recipe
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Educational Guide -->
+    <article class="guide-section">
+      <h2>Understanding Flour Protein & Gluten Architecture</h2>
+      <p>
+        In bread making, "protein" refers primarily to two storage proteins found in wheat endosperm: <strong>gliadin</strong> and <strong>glutenin</strong>. When hydrated and agitated, these proteins bond via disulfide bridges to form <strong>gluten</strong>, the viscoelastic network that inflates with carbon dioxide gas during proofing and oven spring.
+      </p>
+
+      <h3>Flour Protein Profiles by Common Brand</h3>
+      <div style="overflow-x:auto; margin:1.5rem 0;">
+        <table class="formula-table" style="background:var(--bg-primary); border:1px solid var(--border-subtle); border-radius:var(--radius-md);">
+          <thead>
+            <tr>
+              <th>Flour Brand & Name</th>
+              <th>Protein %</th>
+              <th>Ash %</th>
+              <th>Best Used For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>King Arthur Bread Flour</strong></td>
+              <td>12.7%</td>
+              <td>0.55%</td>
+              <td>Artisan sourdough, baguettes, chewy pizza crusts</td>
+            </tr>
+            <tr>
+              <td><strong>King Arthur All-Purpose</strong></td>
+              <td>11.7%</td>
+              <td>0.50%</td>
+              <td>Country loaves, cookies, scones, pancakes</td>
+            </tr>
+            <tr>
+              <td><strong>Gold Medal / Pillsbury AP</strong></td>
+              <td>10.5%</td>
+              <td>0.48%</td>
+              <td>Cakes, tender pastry, sandwich breads</td>
+            </tr>
+            <tr>
+              <td><strong>Caputo '00' Pizzeria</strong></td>
+              <td>12.5%</td>
+              <td>0.50%</td>
+              <td>High-temperature wood-fired Neapolitan pizza</td>
+            </tr>
+            <tr>
+              <td><strong>Bob's Red Mill Vital Wheat Gluten</strong></td>
+              <td>75.0%–80.0%</td>
+              <td>1.0%</td>
+              <td>Protein fortification, seitan, high-rye dough support</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- FAQs -->
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can I add Vital Wheat Gluten to 100% rye bread?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">
+            Yes. Rye contains mostly secalin rather than glutenin, which cannot form a traditional gluten matrix on its own. Adding 3% to 5% Vital Wheat Gluten to a high-percentage rye formula gives the dough sufficient structural elasticity to hold gas and prevent a gummy, heavy brick.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Does higher protein always mean better sourdough?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">
+            Not necessarily. Excessively high protein (above 14.5%) can make dough stiff, rubbery, and overly elastic (resistant to stretching), leading to a tight, tough crumb rather than an open, tender, custardy crumb. For artisan country sourdough, 12.0% to 12.8% protein is considered the sweet spot.
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom:0.75rem;">
+            <svg class="logo-icon" viewBox="0 0 64 64"><path d="M10,44 C10,24 22,14 32,14 C42,14 54,24 54,44 C54,49 50,52 32,52 C14,52 10,49 10,44 Z" fill="#D97706"/><path d="M22,24 Q28,32 30,42" fill="none" stroke="#FEF3C7" stroke-width="3" stroke-linecap="round"/></svg>
+            <span>CrumbCraft</span>
+          </div>
+          <p style="font-size:0.875rem;">Scientific baking calculations for precision artisan bread makers.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Calculators</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Hydration & Scaler</a></li>
+            <li><a href="ddt-calculator.html">DDT Water Temp</a></li>
+            <li><a href="starter-feeding-schedule.html">Starter Feeding Planner</a></li>
+            <li><a href="fermentation-calculator.html">Bulk Fermentation Chart</a></li>
+            <li><a href="flour-protein-calculator.html">Flour Protein Blending</a></li>
+            <li><a href="yeast-converter.html">Yeast & Discard Converter</a></li>
+            <li><a href="loaf-pan-calculator.html">Bread Pan Scaler</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul class="footer-links">
+            <li><a href="guides/bakers-percentages-explained.html">Baker's Math Guide</a></li>
+            <li><a href="guides/desired-dough-temperature-guide.html">DDT & Friction Science</a></li>
+            <li><a href="guides/sourdough-hydration-crumb-guide.html">Hydration & Crumb Texture</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Engineering</h4>
+          <ul class="footer-links">
+            <li><a href="seo-dashboard.html">Live SEO Dashboard</a></li>
+            <li><a href="legal/privacy.html">Privacy Policy</a></li>
+            <li><a href="legal/terms.html">Terms of Service</a></li>
+            <li><a href="sitemap.xml">XML Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 CrumbCraft. Zero ads, zero trackers, 100% utility.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/calculators.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    (function() {
+      const rangeTotal = document.getElementById('range-protein-total');
+      const numTotal = document.getElementById('num-protein-total');
+      const valTotal = document.getElementById('val-protein-total');
+
+      const selectBase = document.getElementById('select-base-flour');
+      const numBase = document.getElementById('num-base-protein');
+      const valBase = document.getElementById('val-base-pct');
+
+      const selectFort = document.getElementById('select-fortifier-flour');
+      const numFort = document.getElementById('num-fortifier-protein');
+      const valFort = document.getElementById('val-fortifier-pct');
+
+      const rangeTarget = document.getElementById('range-target-protein');
+      const numTarget = document.getElementById('num-target-protein');
+      const valTarget = document.getElementById('val-target-protein');
+
+      const resBaseGrams = document.getElementById('res-base-grams');
+      const resBaseSub = document.getElementById('res-base-sub');
+      const resFortGrams = document.getElementById('res-fortifier-grams');
+      const resFortSub = document.getElementById('res-fortifier-sub');
+
+      const verifTarget = document.getElementById('verif-target');
+      const verifAchieved = document.getElementById('verif-achieved');
+      const verifTotal = document.getElementById('verif-total');
+
+      function updateProteinCalc() {
+        const totalW = Number(numTotal.value) || 500;
+        valTotal.textContent = totalW + ' g';
+
+        const pBase = Number(numBase.value) || 10.5;
+        valBase.textContent = pBase.toFixed(1) + ' %';
+
+        const pFort = Number(numFort.value) || 75.0;
+        valFort.textContent = pFort.toFixed(1) + ' %';
+
+        let pTarget = Number(numTarget.value) || 12.5;
+        // Clamp target between base and fortifier
+        pTarget = Math.max(pBase, Math.min(pFort, pTarget));
+        numTarget.value = pTarget.toFixed(1);
+        rangeTarget.value = pTarget.toFixed(1);
+        rangeTarget.min = Math.floor(pBase);
+        rangeTarget.max = Math.ceil(Math.min(18, pFort));
+        valTarget.textContent = pTarget.toFixed(1) + ' %';
+
+        try {
+          const res = BreadEngine.calculateProteinBlend({
+            baseProteinPct: pBase,
+            fortifierProteinPct: pFort,
+            targetProteinPct: pTarget,
+            totalFlourWeight: totalW
+          });
+
+          resBaseGrams.textContent = res.baseWeight.toFixed(1) + ' g';
+          resBaseSub.textContent = ((res.baseWeight / totalW) * 100).toFixed(1) + '% of total flour';
+
+          resFortGrams.textContent = res.fortifierWeight.toFixed(1) + ' g';
+          resFortSub.textContent = ((res.fortifierWeight / totalW) * 100).toFixed(1) + '% of total flour';
+
+          verifTarget.textContent = pTarget.toFixed(2) + '%';
+          verifAchieved.textContent = res.achievedProteinPct.toFixed(2) + '%';
+          verifTotal.textContent = totalW.toFixed(1) + ' g';
+        } catch (err) {
+          // Fallback if target is out of bounds
+        }
+      }
+
+      selectBase.addEventListener('change', e => {
+        if (e.target.value !== 'custom') {
+          numBase.value = e.target.value;
+        }
+        updateProteinCalc();
+      });
+      numBase.addEventListener('input', () => { selectBase.value = 'custom'; updateProteinCalc(); });
+
+      selectFort.addEventListener('change', e => {
+        if (e.target.value !== 'custom') {
+          numFort.value = e.target.value;
+        }
+        updateProteinCalc();
+      });
+      numFort.addEventListener('input', () => { selectFort.value = 'custom'; updateProteinCalc(); });
+
+      rangeTotal.addEventListener('input', e => { numTotal.value = e.target.value; updateProteinCalc(); });
+      numTotal.addEventListener('input', e => { rangeTotal.value = e.target.value; updateProteinCalc(); });
+
+      rangeTarget.addEventListener('input', e => { numTarget.value = e.target.value; updateProteinCalc(); });
+      numTarget.addEventListener('input', e => { rangeTarget.value = e.target.value; updateProteinCalc(); });
+
+      document.getElementById('btn-copy-protein').addEventListener('click', () => {
+        const formula = `CRUMBCRAFT FLOUR PROTEIN BLEND:
+Target Protein: ${verifTarget.textContent}
+Total Flour Weight: ${verifTotal.textContent}
+------------------------------------------
+• Base Flour (${numBase.value}%): ${resBaseGrams.textContent} (${resBaseSub.textContent})
+• Fortifier / VWG (${numFort.value}%): ${resFortGrams.textContent} (${resFortSub.textContent})
+Calculated with CrumbCraft (https://crumbcraft.pages.dev/flour-protein-calculator.html)`;
+        copyFormulaToClipboard(formula);
+      });
+
+      updateProteinCalc();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "CrumbCraft: Artisan Sourdough & Baker's Math Engine",
+  "short_name": "CrumbCraft",
+  "description": "Scientific artisan sourdough hydration calculator, DDT water temp estimator, and baker's percentage toolkit.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF8F5",
+  "theme_color": "#D97706",
+  "icons": [
+    {
+      "src": "/assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

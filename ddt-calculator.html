@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desired Dough Temperature (DDT) Calculator & Ice Water Math | CrumbCraft</title>
+  <meta name="description" content="Calculate exact strike water temperature for bread baking. Features 3-factor direct dough and 4-factor sourdough formulas with thermodynamic ice water math.">
+  <link rel="canonical" href="https://crumbcraft.pages.dev/ddt-calculator.html">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://crumbcraft.pages.dev/ddt-calculator.html">
+  <meta property="og:title" content="Desired Dough Temperature (DDT) Calculator & Ice Water Math | CrumbCraft">
+  <meta property="og:description" content="Compute exact water temperature for consistent sourdough fermentation, including thermodynamic ice water cooling.">
+  <meta property="og:image" content="https://crumbcraft.pages.dev/assets/img/favicon.svg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#D97706">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://crumbcraft.pages.dev/ddt-calculator.html#webapp",
+        "name": "CrumbCraft DDT Water Temperature Calculator",
+        "url": "https://crumbcraft.pages.dev/ddt-calculator.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Calculates the exact water temperature needed to achieve target Desired Dough Temperature (DDT) for artisan sourdough and yeasted doughs, including ice water substitution."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://crumbcraft.pages.dev/ddt-calculator.html#breadcrumbs",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://crumbcraft.pages.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "DDT Calculator", "item": "https://crumbcraft.pages.dev/ddt-calculator.html" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://crumbcraft.pages.dev/ddt-calculator.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Desired Dough Temperature (DDT)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Desired Dough Temperature (DDT) is the ideal temperature of the dough immediately after mixing is complete, typically 75°F to 78°F (24°C to 26°C) for sourdough. Controlling DDT ensures consistent fermentation rate and predictable bulk fermentation timing regardless of seasonal kitchen shifts."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you calculate required water temperature for sourdough?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For sourdough, use the 4-factor formula: Water Temp = (4 × Desired Dough Temp) − (Room Temp + Flour Temp + Starter Temp + Mixer Friction Factor)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What should I do if my calculated water temperature is colder than tap water?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "During hot summer baking, the required water temperature may be lower than your tap water. You must replace a portion of the recipe water with crushed ice. Because ice absorbs significant thermal energy during melting (80 cal/g latent heat of fusion), our calculator uses thermodynamics to tell you the exact grams of ice and tap water to combine."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="CrumbCraft Home">
+        <svg class="logo-icon" viewBox="0 0 64 64"><path d="M10,44 C10,24 22,14 32,14 C42,14 54,24 54,44 C54,49 50,52 32,52 C14,52 10,49 10,44 Z" fill="#D97706"/><path d="M22,24 Q28,32 30,42" fill="none" stroke="#FEF3C7" stroke-width="3" stroke-linecap="round"/></svg>
+        <span>CrumbCraft</span>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Hydration</a></li>
+          <li><a href="ddt-calculator.html" class="nav-link active">DDT Water Temp</a></li>
+          <li><a href="starter-feeding-schedule.html" class="nav-link">Starter Planner</a></li>
+          <li><a href="fermentation-calculator.html" class="nav-link">Bulk Ferment</a></li>
+          <li><a href="flour-protein-calculator.html" class="nav-link">Flour Protein</a></li>
+          <li><a href="yeast-converter.html" class="nav-link">Yeast & Discard</a></li>
+          <li><a href="loaf-pan-calculator.html" class="nav-link">Pan Scaler</a></li>
+          <li><a href="seo-dashboard.html" class="nav-link" style="color:var(--brand-amber); font-weight:700;">SEO Stats</a></li>
+        </ul>
+      </nav>
+
+      <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <ul class="breadcrumbs">
+      <li><a href="index.html">Home</a></li>
+      <li aria-current="page">Desired Dough Temperature (DDT) Calculator</li>
+    </ul>
+
+    <section class="hero">
+      <span class="hero-badge">Temperature Physics & Thermal Equilibrium</span>
+      <h1>Desired Dough Temperature (DDT) Calculator</h1>
+      <p class="lead">
+        Never guess your strike water temperature again. Supports 3-factor direct doughs, 4-factor sourdough preferments, and thermodynamic ice water math for summer baking.
+      </p>
+    </section>
+
+    <div class="tool-nav-wrapper">
+      <ul class="tool-tabs">
+        <li class="tool-tab-item"><a href="index.html">🍞 Hydration & Scaler</a></li>
+        <li class="tool-tab-item active"><a href="ddt-calculator.html">🌡️ DDT & Water Temp</a></li>
+        <li class="tool-tab-item"><a href="starter-feeding-schedule.html">⏰ Starter Feeding Planner</a></li>
+        <li class="tool-tab-item"><a href="fermentation-calculator.html">📈 Bulk Fermentation Chart</a></li>
+        <li class="tool-tab-item"><a href="flour-protein-calculator.html">🌾 Flour Protein & Gluten</a></li>
+        <li class="tool-tab-item"><a href="yeast-converter.html">⚖️ Yeast & Discard Converter</a></li>
+        <li class="tool-tab-item"><a href="loaf-pan-calculator.html">📏 Loaf Pan Scaler</a></li>
+      </ul>
+    </div>
+
+    <!-- Calculator Grid -->
+    <div class="calc-grid">
+      <!-- Input Panel -->
+      <section class="calc-card" aria-labelledby="ddt-inputs-heading">
+        <div class="calc-card-header">
+          <h2 id="ddt-inputs-heading" class="calc-card-title">Temperature Variables</h2>
+          <div style="display:flex; gap:0.5rem;">
+            <div class="unit-toggle" role="group" aria-label="Units">
+              <button type="button" class="unit-toggle-btn active" id="btn-unit-c">°C</button>
+              <button type="button" class="unit-toggle-btn" id="btn-unit-f">°F</button>
+            </div>
+            <div class="unit-toggle" role="group" aria-label="Formula Type">
+              <button type="button" class="unit-toggle-btn active" id="btn-type-sourdough">Sourdough (4-Factor)</button>
+              <button type="button" class="unit-toggle-btn" id="btn-type-direct">Direct (3-Factor)</button>
+            </div>
+          </div>
+        </div>
+
+        <form id="ddt-form" onsubmit="return false;">
+          <!-- Desired Dough Temperature -->
+          <div class="form-group">
+            <label class="form-label" for="ddt-target">
+              <span>Target Desired Dough Temp (DDT)</span>
+              <span class="form-label-val" id="val-ddt-target">25.0 °C</span>
+            </label>
+            <input type="range" class="form-range" id="range-ddt-target" min="20" max="32" step="0.5" value="25">
+            <input type="number" class="form-input" id="num-ddt-target" step="0.1" value="25.0">
+            <small style="color:var(--text-light);">Optimal sourdough range: 24°C–26°C (75°F–78°F)</small>
+          </div>
+
+          <!-- Room / Ambient Temperature -->
+          <div class="form-group">
+            <label class="form-label" for="ddt-room">
+              <span>Kitchen Ambient Room Temperature</span>
+              <span class="form-label-val" id="val-ddt-room">22.0 °C</span>
+            </label>
+            <input type="range" class="form-range" id="range-ddt-room" min="15" max="38" step="0.5" value="22">
+            <input type="number" class="form-input" id="num-ddt-room" step="0.1" value="22.0">
+          </div>
+
+          <!-- Flour Temperature -->
+          <div class="form-group">
+            <label class="form-label" for="ddt-flour">
+              <span>Flour Temperature</span>
+              <span class="form-label-val" id="val-ddt-flour">21.0 °C</span>
+            </label>
+            <input type="number" class="form-input" id="num-ddt-flour" step="0.1" value="21.0">
+            <small style="color:var(--text-light);">Typically 1°C lower than room temp unless stored in fridge or pantry.</small>
+          </div>
+
+          <!-- Starter Temperature (Hidden in 3-Factor) -->
+          <div class="form-group" id="group-starter-temp">
+            <label class="form-label" for="ddt-starter">
+              <span>Sourdough Starter / Levain Temperature</span>
+              <span class="form-label-val" id="val-ddt-starter">24.0 °C</span>
+            </label>
+            <input type="number" class="form-input" id="num-ddt-starter" step="0.1" value="24.0">
+          </div>
+
+          <!-- Friction Factor -->
+          <div class="form-group">
+            <label class="form-label" for="ddt-friction">
+              <span>Mixer Friction Factor</span>
+              <span class="form-label-val" id="val-ddt-friction">+1.0 °C (Hand Knead)</span>
+            </label>
+            <select class="form-input" id="ddt-friction-preset" style="margin-bottom:0.5rem;">
+              <option value="1" selected>Hand Kneading (minimal friction: ~1°C / 2°F)</option>
+              <option value="4">Stand Mixer (KitchenAid low speed 5 min: ~4°C / 8°F)</option>
+              <option value="8">Stand Mixer (high speed 10 min: ~8°C / 15°F)</option>
+              <option value="6">Spiral Mixer (artisan micro-bakery: ~6°C / 11°F)</option>
+              <option value="custom">Custom Friction Factor...</option>
+            </select>
+            <input type="number" class="form-input" id="num-ddt-friction" step="0.5" value="1.0">
+          </div>
+
+          <!-- Tap Water Temp & Recipe Water Weight (For Ice Math) -->
+          <div style="background:var(--bg-tertiary); padding:1rem; border-radius:var(--radius-md); margin-top:1.5rem;">
+            <h4 style="font-size:0.9rem; margin-bottom:0.75rem;">🧊 Summer Ice Water Settings</h4>
+            <div class="form-group">
+              <label class="form-label" for="ddt-tap-water">Available Tap Water Temp</label>
+              <input type="number" class="form-input" id="num-ddt-tap-water" step="0.5" value="22.0">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ddt-recipe-water">Total Water Needed in Recipe (g)</label>
+              <input type="number" class="form-input" id="num-ddt-recipe-water" step="10" value="375" placeholder="e.g. 375">
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- Results Panel -->
+      <section class="results-card" aria-labelledby="ddt-results-heading">
+        <div class="calc-card-header">
+          <h2 id="ddt-results-heading" class="calc-card-title">Strike Water Calculation</h2>
+          <span class="badge" style="background:var(--brand-amber-light); color:var(--brand-warm); padding:3px 10px; border-radius:12px; font-size:0.8rem; font-weight:700;">Live Thermal Balance</span>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat-box highlight" style="grid-column: span 2;">
+            <div class="stat-label">Required Strike Water Temperature</div>
+            <div class="stat-value" id="res-water-temp">30.0 °C</div>
+            <div class="stat-sub" id="res-water-temp-sub">Aim for this water temperature when mixing.</div>
+          </div>
+        </div>
+
+        <!-- Ice Math Warning / Alert -->
+        <div id="ice-alert-box" class="alert alert-ice" style="display:none;">
+          <div style="font-size:1.5rem;">🧊</div>
+          <div>
+            <strong>Ice Water Required!</strong>
+            <p style="margin:0.25rem 0 0.5rem 0; color:#0369A1; font-size:0.875rem;">
+              Your calculated strike water temperature is colder than your tap water. Replace part of your recipe water with crushed ice:
+            </p>
+            <div style="background:#FFFFFF; border:1px solid #BAE6FD; border-radius:6px; padding:0.75rem; font-family:var(--font-mono); font-size:0.95rem; color:#0369A1;">
+              <div>• Crushed Ice: <strong id="res-ice-weight">0 g</strong></div>
+              <div>• Tap Water: <strong id="res-tap-weight">0 g</strong></div>
+              <div style="margin-top:0.25rem; font-size:0.8rem; color:#0284C7;">Total Liquid: <span id="res-total-liquid">375 g</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formula Breakdown Card -->
+        <div class="hydration-distinction">
+          <h4>Formula Derivation</h4>
+          <p id="formula-explanation" style="font-size:0.85rem; font-family:var(--font-mono); margin-bottom:0.75rem; color:var(--text-main);">
+            Water Temp = (4 × 25.0) − (22.0 + 21.0 + 24.0 + 1.0) = 32.0°C
+          </p>
+          <ul style="font-size:0.825rem;">
+            <li><span>Factor Multiplier:</span> <span id="stat-multiplier">4 (Sourdough preferential)</span></li>
+            <li><span>Friction Compensation:</span> <span id="stat-friction-val">+1.0 °C</span></li>
+            <li><span>Target Dough Temp:</span> <span id="stat-target-val">25.0 °C</span></li>
+          </ul>
+        </div>
+
+        <div class="btn-group" style="margin-top:auto;">
+          <button type="button" class="btn btn-primary" id="btn-copy-ddt">
+            📋 Copy Temperature Plan
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="window.print()">
+            🖨️ Print
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Educational Deep-Dive Section -->
+    <article class="guide-section">
+      <h2>The Thermodynamics of Strike Water & Friction Factor</h2>
+      <p>
+        In artisan bread baking, temperature is an ingredient just as critical as flour or water. Yeast cells (<em>Saccharomyces cerevisiae</em>) and lactic acid bacteria (<em>Fructilactobacillus sanfranciscensis</em>) are living biological organisms governed by biochemical reaction kinetics.
+      </p>
+
+      <h3>The Arrhenius Effect in Sourdough</h3>
+      <p>
+        According to the Arrhenius equation and the $Q_{10}$ temperature coefficient, enzymatic reaction rates roughly <strong>double with every 10°C (18°F) increase</strong> in dough temperature. 
+      </p>
+      <ul>
+        <li><strong>Below 21°C (70°F):</strong> Fermentation slows dramatically; yeast activity declines faster than bacterial acid production, resulting in sluggish rise and acidic, gummy crumb.</li>
+        <li><strong>Between 24°C and 26°C (75°F to 78°F):</strong> The sweet spot for artisan sourdough. Optimal balance between yeast gas production (carbon dioxide) and gentle lactic acid development.</li>
+        <li><strong>Above 29°C (84°F):</strong> Bacterial acidification accelerates rapidly. Proteolytic enzymes begin breaking down the gluten matrix, turning your dough into a soupy, unshapeable mass.</li>
+      </ul>
+
+      <h3>Why Ice Water Math Requires Thermodynamics</h3>
+      <p>
+        Many online baking guides mistakenly suggest simply mixing cold water with ice cubes by eye. However, water requires only <strong>1 calorie per gram</strong> to change temperature by 1°C, but ice requires <strong>80 calories per gram</strong> (latent heat of fusion) merely to melt from solid to liquid at 0°C without warming up at all!
+      </p>
+      <p>
+        CrumbCraft solves this exact thermodynamic equilibrium using the physical formula:
+      </p>
+      <div style="background:var(--bg-primary); padding:1rem; border-radius:var(--radius-md); font-family:var(--font-mono); font-size:0.9rem; margin:1rem 0;">
+        Mass_Ice = Mass_Water × (Temp_Tap − Temp_Target) ÷ (Temp_Tap + 80)
+      </div>
+      <p>
+        This guarantees that when the ice melts completely in your mixing bowl, your strike water will reach the exact target temperature without chilling your dough below fermentation threshold.
+      </p>
+
+      <!-- FAQ Section -->
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How do I determine my mixer's friction factor?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">
+            To measure your mixer's friction factor accurately: measure your room, flour, and water temperature before mixing. Mix the dough for your normal duration (e.g. 5 minutes on speed 2). Take the dough temperature immediately after mixing. Calculate: <code>Friction = (3 × Actual Dough Temp) − (Room Temp + Flour Temp + Water Temp)</code>. Save that number for all future bakes with that mixer!
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Should I use the 3-factor or 4-factor formula?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">
+            Use the <strong>4-factor formula</strong> whenever you are using a preferment (sourdough starter, poolish, or biga) that comprises 15% or more of your recipe flour. Because the starter has significant mass, its temperature noticeably impacts the final mixture. Use the <strong>3-factor formula</strong> for direct doughs using commercial active dry or instant yeast with no preferment.
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom:0.75rem;">
+            <svg class="logo-icon" viewBox="0 0 64 64"><path d="M10,44 C10,24 22,14 32,14 C42,14 54,24 54,44 C54,49 50,52 32,52 C14,52 10,49 10,44 Z" fill="#D97706"/><path d="M22,24 Q28,32 30,42" fill="none" stroke="#FEF3C7" stroke-width="3" stroke-linecap="round"/></svg>
+            <span>CrumbCraft</span>
+          </div>
+          <p style="font-size:0.875rem;">Scientific baking calculations for precision home bakers and artisan micro-bakeries.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Calculators</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Hydration & Scaler</a></li>
+            <li><a href="ddt-calculator.html">DDT Water Temp</a></li>
+            <li><a href="starter-feeding-schedule.html">Starter Feeding Planner</a></li>
+            <li><a href="fermentation-calculator.html">Bulk Fermentation Chart</a></li>
+            <li><a href="flour-protein-calculator.html">Flour Protein Blending</a></li>
+            <li><a href="yeast-converter.html">Yeast & Discard Converter</a></li>
+            <li><a href="loaf-pan-calculator.html">Bread Pan Scaler</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul class="footer-links">
+            <li><a href="guides/bakers-percentages-explained.html">Baker's Math Guide</a></li>
+            <li><a href="guides/desired-dough-temperature-guide.html">DDT & Friction Science</a></li>
+            <li><a href="guides/sourdough-hydration-crumb-guide.html">Hydration & Crumb Texture</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Engineering</h4>
+          <ul class="footer-links">
+            <li><a href="seo-dashboard.html">Live SEO Dashboard</a></li>
+            <li><a href="legal/privacy.html">Privacy Policy</a></li>
+            <li><a href="legal/terms.html">Terms of Service</a></li>
+            <li><a href="sitemap.xml">XML Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 CrumbCraft. Zero ads, zero trackers, 100% utility.</span>
+        <span>Version 1.0.0 (Production)</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/calculators.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    (function() {
+      let currentUnit = 'C';
+      let isSourdough = true;
+
+      // Unit & Mode Buttons
+      const btnC = document.getElementById('btn-unit-c');
+      const btnF = document.getElementById('btn-unit-f');
+      const btnSourdough = document.getElementById('btn-type-sourdough');
+      const btnDirect = document.getElementById('btn-type-direct');
+      const starterGroup = document.getElementById('group-starter-temp');
+
+      // Inputs
+      const rangeDDT = document.getElementById('range-ddt-target');
+      const numDDT = document.getElementById('num-ddt-target');
+      const valDDT = document.getElementById('val-ddt-target');
+
+      const rangeRoom = document.getElementById('range-ddt-room');
+      const numRoom = document.getElementById('num-ddt-room');
+      const valRoom = document.getElementById('val-ddt-room');
+
+      const numFlour = document.getElementById('num-ddt-flour');
+      const valFlour = document.getElementById('val-ddt-flour');
+
+      const numStarter = document.getElementById('num-ddt-starter');
+      const valStarter = document.getElementById('val-ddt-starter');
+
+      const frictionPreset = document.getElementById('ddt-friction-preset');
+      const numFriction = document.getElementById('num-ddt-friction');
+      const valFriction = document.getElementById('val-ddt-friction');
+
+      const numTap = document.getElementById('num-ddt-tap-water');
+      const numRecipeWater = document.getElementById('num-ddt-recipe-water');
+
+      // Outputs
+      const resWaterTemp = document.getElementById('res-water-temp');
+      const resWaterSub = document.getElementById('res-water-temp-sub');
+      const iceAlert = document.getElementById('ice-alert-box');
+      const resIceWeight = document.getElementById('res-ice-weight');
+      const resTapWeight = document.getElementById('res-tap-weight');
+      const resTotalLiquid = document.getElementById('res-total-liquid');
+      const formulaExpl = document.getElementById('formula-explanation');
+      const statMultiplier = document.getElementById('stat-multiplier');
+      const statFriction = document.getElementById('stat-friction-val');
+      const statTarget = document.getElementById('stat-target-val');
+
+      function updateDDT() {
+        const ddt = Number(numDDT.value);
+        const room = Number(numRoom.value);
+        const flour = Number(numFlour.value);
+        const starter = isSourdough ? Number(numStarter.value) : null;
+        const friction = Number(numFriction.value);
+        const tap = Number(numTap.value);
+        const waterW = Number(numRecipeWater.value) || 0;
+
+        const res = BreadEngine.calculateDDT({
+          desiredDoughTemp: ddt,
+          roomTemp: room,
+          flourTemp: flour,
+          starterTemp: starter,
+          frictionFactor: friction,
+          tapWaterTemp: tap,
+          unit: currentUnit,
+          waterWeight: waterW
+        });
+
+        // Update display values
+        valDDT.textContent = ddt.toFixed(1) + ' °' + currentUnit;
+        valRoom.textContent = room.toFixed(1) + ' °' + currentUnit;
+        valFlour.textContent = flour.toFixed(1) + ' °' + currentUnit;
+        if (isSourdough) valStarter.textContent = Number(numStarter.value).toFixed(1) + ' °' + currentUnit;
+        valFriction.textContent = '+' + friction.toFixed(1) + ' °' + currentUnit;
+
+        resWaterTemp.textContent = res.requiredWaterTemp.toFixed(1) + ' °' + currentUnit;
+
+        // Ice Math
+        if (res.needsIce && waterW > 0) {
+          iceAlert.style.display = 'flex';
+          resIceWeight.textContent = res.iceWeight.toFixed(1) + ' g';
+          resTapWeight.textContent = res.tapWaterWeight.toFixed(1) + ' g';
+          resTotalLiquid.textContent = waterW + ' g';
+          resWaterSub.textContent = `Strike water must be chilled to ${res.requiredWaterTemp.toFixed(1)}°${currentUnit} using crushed ice.`;
+        } else {
+          iceAlert.style.display = 'none';
+          if (res.requiredWaterTemp > tap) {
+            resWaterSub.textContent = `Warm up tap water by ${(res.requiredWaterTemp - tap).toFixed(1)}°${currentUnit} to reach strike temperature.`;
+          } else {
+            resWaterSub.textContent = `Tap water is warm enough; mix directly.`;
+          }
+        }
+
+        // Formula breakdown string
+        if (isSourdough) {
+          formulaExpl.textContent = `Water = (4 × ${ddt.toFixed(1)}) − (${room.toFixed(1)} + ${flour.toFixed(1)} + ${Number(numStarter.value).toFixed(1)} + ${friction.toFixed(1)}) = ${res.requiredWaterTemp.toFixed(1)}°${currentUnit}`;
+          statMultiplier.textContent = "4 (Sourdough preferment included)";
+        } else {
+          formulaExpl.textContent = `Water = (3 × ${ddt.toFixed(1)}) − (${room.toFixed(1)} + ${flour.toFixed(1)} + ${friction.toFixed(1)}) = ${res.requiredWaterTemp.toFixed(1)}°${currentUnit}`;
+          statMultiplier.textContent = "3 (Direct commercial yeast)";
+        }
+
+        statFriction.textContent = '+' + friction.toFixed(1) + ' °' + currentUnit;
+        statTarget.textContent = ddt.toFixed(1) + ' °' + currentUnit;
+      }
+
+      // Unit Toggle Handlers
+      btnC.addEventListener('click', () => {
+        if (currentUnit === 'C') return;
+        currentUnit = 'C';
+        btnC.classList.add('active');
+        btnF.classList.remove('active');
+
+        // Convert values F to C
+        const fToC = f => (f - 32) * 5 / 9;
+        numDDT.value = fToC(Number(numDDT.value)).toFixed(1);
+        rangeDDT.min = 18; rangeDDT.max = 35; rangeDDT.step = 0.5; rangeDDT.value = numDDT.value;
+
+        numRoom.value = fToC(Number(numRoom.value)).toFixed(1);
+        rangeRoom.min = 15; rangeRoom.max = 38; rangeRoom.step = 0.5; rangeRoom.value = numRoom.value;
+
+        numFlour.value = fToC(Number(numFlour.value)).toFixed(1);
+        numStarter.value = fToC(Number(numStarter.value)).toFixed(1);
+        numTap.value = fToC(Number(numTap.value)).toFixed(1);
+        numFriction.value = (Number(numFriction.value) * 5 / 9).toFixed(1);
+
+        updateDDT();
+      });
+
+      btnF.addEventListener('click', () => {
+        if (currentUnit === 'F') return;
+        currentUnit = 'F';
+        btnF.classList.add('active');
+        btnC.classList.remove('active');
+
+        // Convert values C to F
+        const cToF = c => (c * 9 / 5) + 32;
+        numDDT.value = cToF(Number(numDDT.value)).toFixed(1);
+        rangeDDT.min = 65; rangeDDT.max = 95; rangeDDT.step = 1; rangeDDT.value = numDDT.value;
+
+        numRoom.value = cToF(Number(numRoom.value)).toFixed(1);
+        rangeRoom.min = 60; rangeRoom.max = 100; rangeRoom.step = 1; rangeRoom.value = numRoom.value;
+
+        numFlour.value = cToF(Number(numFlour.value)).toFixed(1);
+        numStarter.value = cToF(Number(numStarter.value)).toFixed(1);
+        numTap.value = cToF(Number(numTap.value)).toFixed(1);
+        numFriction.value = (Number(numFriction.value) * 9 / 5).toFixed(1);
+
+        updateDDT();
+      });
+
+      // Mode Handlers
+      btnSourdough.addEventListener('click', () => {
+        isSourdough = true;
+        btnSourdough.classList.add('active');
+        btnDirect.classList.remove('active');
+        starterGroup.style.display = 'block';
+        updateDDT();
+      });
+
+      btnDirect.addEventListener('click', () => {
+        isSourdough = false;
+        btnDirect.classList.add('active');
+        btnSourdough.classList.remove('active');
+        starterGroup.style.display = 'none';
+        updateDDT();
+      });
+
+      // Sliders & Number sync
+      rangeDDT.addEventListener('input', e => { numDDT.value = e.target.value; updateDDT(); });
+      numDDT.addEventListener('input', e => { rangeDDT.value = e.target.value; updateDDT(); });
+
+      rangeRoom.addEventListener('input', e => { numRoom.value = e.target.value; updateDDT(); });
+      numRoom.addEventListener('input', e => { rangeRoom.value = e.target.value; updateDDT(); });
+
+      numFlour.addEventListener('input', updateDDT);
+      numStarter.addEventListener('input', updateDDT);
+      numTap.addEventListener('input', updateDDT);
+      numRecipeWater.addEventListener('input', updateDDT);
+
+      // Friction Preset Change
+      frictionPreset.addEventListener('change', e => {
+        if (e.target.value !== 'custom') {
+          const val = Number(e.target.value);
+          numFriction.value = currentUnit === 'C' ? val.toFixed(1) : (val * 9 / 5).toFixed(1);
+        }
+        updateDDT();
+      });
+      numFriction.addEventListener('input', () => {
+        frictionPreset.value = 'custom';
+        updateDDT();
+      });
+
+      // Copy Plan Button
+      document.getElementById('btn-copy-ddt').addEventListener('click', () => {
+        const plan = `CRUMBCRAFT DESIRED DOUGH TEMPERATURE PLAN:
+Target DDT: ${numDDT.value}°${currentUnit}
+Room Temp: ${numRoom.value}°${currentUnit}
+Flour Temp: ${numFlour.value}°${currentUnit}
+${isSourdough ? 'Starter Temp: ' + numStarter.value + '°' + currentUnit : 'Formula: Direct 3-Factor'}
+Mixer Friction: +${numFriction.value}°${currentUnit}
+----------------------------------------
+REQUIRED STRIKE WATER TEMP: ${resWaterTemp.textContent}
+${iceAlert.style.display !== 'none' ? `* ICE WATER REQUIRED: ${resIceWeight.textContent} crushed ice + ${resTapWeight.textContent} tap water` : ''}
+Calculated with CrumbCraft (https://crumbcraft.pages.dev/ddt-calculator.html)`;
+        copyFormulaToClipboard(plan);
+      });
+
+      // Initial Call
+      updateDDT();
+    })();
+  </script>
+</body>
+</html>

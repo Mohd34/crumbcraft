@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sourdough Bulk Fermentation Calculator & Temperature Chart | CrumbCraft</title>
+  <meta name="description" content="Calculate sourdough bulk fermentation time and target aliquot rise percentage based on dough temperature and starter inoculation rate. Avoid overproofing and underproofing.">
+  <link rel="canonical" href="https://crumbcraft.pages.dev/fermentation-calculator.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://crumbcraft.pages.dev/fermentation-calculator.html">
+  <meta property="og:title" content="Sourdough Bulk Fermentation Calculator & Temperature Chart | CrumbCraft">
+  <meta property="og:description" content="Predict bulk fermentation time windows and ideal volume rise percentage based on kitchen temperature.">
+  <meta property="og:image" content="https://crumbcraft.pages.dev/assets/img/favicon.svg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#D97706">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://crumbcraft.pages.dev/fermentation-calculator.html#webapp",
+        "name": "CrumbCraft Bulk Fermentation Calculator",
+        "url": "https://crumbcraft.pages.dev/fermentation-calculator.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Calculates sourdough bulk fermentation duration and target volume increase based on dough temperature and starter percentage."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://crumbcraft.pages.dev/fermentation-calculator.html#breadcrumbs",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://crumbcraft.pages.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Bulk Fermentation Calculator", "item": "https://crumbcraft.pages.dev/fermentation-calculator.html" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://crumbcraft.pages.dev/fermentation-calculator.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How long should sourdough bulk ferment at 68°F (20°C)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "At 68°F (20°C) with standard 20% starter inoculation, bulk fermentation typically takes 8 to 11 hours. Because the dough is cool, it should be allowed to rise roughly 75% to 100% in volume before shaping and refrigerating, as it will cool down quickly in the fridge."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why should warmer dough rise less during bulk fermentation?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "When dough is warm (e.g. 78°F to 82°F / 26°C to 28°C), it carries high thermal mass into the refrigerator and takes 4 to 6 hours to chill down to dormancy temperature (39°F / 4°C). If you let it rise 100% on the counter, it will severely overproof in the fridge. Therefore, warm dough should only rise 30% to 50% on the counter before shaping."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="CrumbCraft Home">
+        <svg class="logo-icon" viewBox="0 0 64 64"><path d="M10,44 C10,24 22,14 32,14 C42,14 54,24 54,44 C54,49 50,52 32,52 C14,52 10,49 10,44 Z" fill="#D97706"/><path d="M22,24 Q28,32 30,42" fill="none" stroke="#FEF3C7" stroke-width="3" stroke-linecap="round"/></svg>
+        <span>CrumbCraft</span>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Hydration</a></li>
+          <li><a href="ddt-calculator.html" class="nav-link">DDT Water Temp</a></li>
+          <li><a href="starter-feeding-schedule.html" class="nav-link">Starter Planner</a></li>
+          <li><a href="fermentation-calculator.html" class="nav-link active">Bulk Ferment</a></li>
+          <li><a href="flour-protein-calculator.html" class="nav-link">Flour Protein</a></li>
+          <li><a href="yeast-converter.html" class="nav-link">Yeast & Discard</a></li>
+          <li><a href="loaf-pan-calculator.html" class="nav-link">Pan Scaler</a></li>
+          <li><a href="seo-dashboard.html" class="nav-link" style="color:var(--brand-amber); font-weight:700;">SEO Stats</a></li>
+        </ul>
+      </nav>
+
+      <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <ul class="breadcrumbs">
+      <li><a href="index.html">Home</a></li>
+      <li aria-current="page">Sourdough Bulk Fermentation Time & Temperature Calculator</li>
+    </ul>
+
+    <section class="hero">
+      <span class="hero-badge">Fermentation Kinetics & Aliquot Jar Rise</span>
+      <h1>Sourdough Bulk Fermentation Calculator</h1>
+      <p class="lead">
+        Predict your bulk fermentation window and target percentage volume rise based on dough temperature and starter inoculation. Prevent gummy underproofed bread and collapsed overproofed dough.
+      </p>
+    </section>
+
+    <div class="tool-nav-wrapper">
+      <ul class="tool-tabs">
+        <li class="tool-tab-item"><a href="index.html">🍞 Hydration & Scaler</a></li>
+        <li class="tool-tab-item"><a href="ddt-calculator.html">🌡️ DDT & Water Temp</a></li>
+        <li class="tool-tab-item"><a href="starter-feeding-schedule.html">⏰ Starter Feeding Planner</a></li>
+        <li class="tool-tab-item active"><a href="fermentation-calculator.html">📈 Bulk Fermentation Chart</a></li>
+        <li class="tool-tab-item"><a href="flour-protein-calculator.html">🌾 Flour Protein & Gluten</a></li>
+        <li class="tool-tab-item"><a href="yeast-converter.html">⚖️ Yeast & Discard Converter</a></li>
+        <li class="tool-tab-item"><a href="loaf-pan-calculator.html">📏 Loaf Pan Scaler</a></li>
+      </ul>
+    </div>
+
+    <!-- Calculator Grid -->
+    <div class="calc-grid">
+      <!-- Input Panel -->
+      <section class="calc-card" aria-labelledby="ferment-inputs-heading">
+        <div class="calc-card-header">
+          <h2 id="ferment-inputs-heading" class="calc-card-title">Fermentation Variables</h2>
+          <div class="unit-toggle" role="group" aria-label="Units">
+            <button type="button" class="unit-toggle-btn active" id="btn-ferment-c">°C</button>
+            <button type="button" class="unit-toggle-btn" id="btn-ferment-f">°F</button>
+          </div>
+        </div>
+
+        <form id="ferment-form" onsubmit="return false;">
+          <!-- Dough Temperature -->
+          <div class="form-group">
+            <label class="form-label" for="ferment-temp">
+              <span>Average Dough Temperature</span>
+              <span class="form-label-val" id="val-ferment-temp">24.0 °C (75.2 °F)</span>
+            </label>
+            <input type="range" class="form-range" id="range-ferment-temp" min="18" max="29" step="0.5" value="24">
+            <input type="number" class="form-input" id="num-ferment-temp" step="0.5" value="24.0" style="margin-top:0.5rem;">
+            <small style="color:var(--text-light);">Measure the internal temperature of the dough, not just room air.</small>
+          </div>
+
+          <!-- Starter Inoculation Percentage -->
+          <div class="form-group">
+            <label class="form-label" for="ferment-inoculation">
+              <span>Starter Inoculation (% of Recipe Flour)</span>
+              <span class="form-label-val" id="val-ferment-inoculation">20 %</span>
+            </label>
+            <input type="range" class="form-range" id="range-ferment-inoculation" min="10" max="30" step="1" value="20">
+            <input type="number" class="form-input" id="num-ferment-inoculation" step="1" value="20" style="margin-top:0.5rem;">
+            <small style="color:var(--text-light);">Standard artisan sourdough uses 20% (e.g. 100g starter for 500g flour).</small>
+          </div>
+
+          <!-- Cold Retard Plan -->
+          <div class="form-group">
+            <label class="form-label" for="ferment-retard">Proofing Method After Bulk</label>
+            <select class="form-input" id="ferment-retard">
+              <option value="cold" selected>Overnight Cold Retard in Refrigerator (3°C–5°C / 38°F–41°F)</option>
+              <option value="ambient">Same-Day Ambient Proof (Baking today at room temp)</option>
+            </select>
+          </div>
+        </form>
+      </section>
+
+      <!-- Output Panel -->
+      <section class="results-card" aria-labelledby="ferment-results-heading">
+        <div class="calc-card-header">
+          <h2 id="ferment-results-heading" class="calc-card-title">Fermentation Prediction</h2>
+          <span class="badge" style="background:var(--accent-olive-bg); color:var(--accent-olive); padding:3px 10px; border-radius:12px; font-size:0.8rem; font-weight:700;">Arrhenius Q10 Kinetics</span>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat-box highlight">
+            <div class="stat-label">Estimated Bulk Window</div>
+            <div class="stat-value" id="res-bulk-hours">5.5 – 6.5 hrs</div>
+            <div class="stat-sub">From mix to shaping</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Target Volume Increase</div>
+            <div class="stat-value" id="res-target-rise" style="color:var(--brand-warm);">50% – 60%</div>
+            <div class="stat-sub">Aliquot jar / straight container</div>
+          </div>
+        </div>
+
+        <!-- Visual Rise Target Callout -->
+        <div class="hydration-distinction">
+          <h4>🎯 Why Target Rise Changes With Temperature</h4>
+          <p id="res-rise-rationale" style="font-size:0.85rem; color:var(--text-main); margin-bottom:0.5rem;">
+            At 24.0°C (75.2°F), your dough will retain moderate heat when placed in the fridge, taking 3–4 hours to cool. Stop bulk fermentation when the dough has risen <strong>50%–60%</strong> to allow for carry-over fermentation in the refrigerator.
+          </p>
+          <ul style="font-size:0.825rem;">
+            <li><span>Dough Visuals:</span> <span>Domed surface, aerated edges, marshmallow feel.</span></li>
+            <li><span>Shake Test:</span> <span>Jiggles noticeably when bowl is shaken gently.</span></li>
+            <li><span>Gas Development:</span> <span>Visible bubbles under the surface skin.</span></li>
+          </ul>
+        </div>
+
+        <div class="btn-group" style="margin-top:auto;">
+          <button type="button" class="btn btn-primary" id="btn-copy-ferment">
+            📋 Copy Fermentation Targets
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Complete Temperature Chart & Diagnostic Table -->
+    <article class="guide-section">
+      <h2>Sourdough Bulk Fermentation Master Temperature Chart</h2>
+      <p>
+        The following reference table maps dough temperature to typical bulk fermentation times (assuming 20% mature starter inoculation) and recommended volume rise targets before overnight cold retard:
+      </p>
+
+      <div style="overflow-x:auto; margin:1.5rem 0;">
+        <table class="formula-table" style="background:var(--bg-primary); border:1px solid var(--border-subtle); border-radius:var(--radius-md);">
+          <thead>
+            <tr>
+              <th>Dough Temp (°F / °C)</th>
+              <th>Estimated Bulk Duration</th>
+              <th>Target Rise % (Cold Retard)</th>
+              <th>Target Rise % (Same Day)</th>
+              <th>Handling Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>65°F (18.3°C)</strong></td>
+              <td>10.0 – 13.0 hours</td>
+              <td>90% – 100% (Doubled)</td>
+              <td>110% – 120%</td>
+              <td>Very slow; dough cools immediately in fridge. Must ferment fully on counter.</td>
+            </tr>
+            <tr>
+              <td><strong>68°F (20.0°C)</strong></td>
+              <td>8.0 – 10.5 hours</td>
+              <td>75% – 85%</td>
+              <td>100%</td>
+              <td>Great acid flavor development; forgiving fermentation window.</td>
+            </tr>
+            <tr>
+              <td><strong>72°F (22.2°C)</strong></td>
+              <td>6.5 – 8.0 hours</td>
+              <td>60% – 70%</td>
+              <td>85% – 90%</td>
+              <td>Balanced yeast gas and lactic acidity. Easy to manage schedule.</td>
+            </tr>
+            <tr>
+              <td><strong>75°F (23.9°C)</strong></td>
+              <td>5.0 – 6.5 hours</td>
+              <td>50% – 60%</td>
+              <td>75% – 80%</td>
+              <td>The artisan bakery benchmark. Predictable and uniform.</td>
+            </tr>
+            <tr>
+              <td><strong>78°F (25.5°C)</strong></td>
+              <td>4.0 – 5.0 hours</td>
+              <td>35% – 45%</td>
+              <td>65% – 70%</td>
+              <td>Fast fermentation. High carry-over fermentation in fridge.</td>
+            </tr>
+            <tr>
+              <td><strong>82°F (27.8°C)</strong></td>
+              <td>3.0 – 4.0 hours</td>
+              <td>25% – 35%</td>
+              <td>50% – 60%</td>
+              <td>Danger zone for over-acidification. Shape early and chill immediately.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Underproofed vs Overproofed Crumb Diagnostic</h3>
+      <div style="overflow-x:auto; margin:1.5rem 0;">
+        <table class="formula-table" style="background:var(--bg-primary); border:1px solid var(--border-subtle); border-radius:var(--radius-md);">
+          <thead>
+            <tr>
+              <th>Diagnostic Feature</th>
+              <th>Underproofed Loaf</th>
+              <th>Perfect Open Crumb</th>
+              <th>Overproofed Loaf</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Crumb Texture</strong></td>
+              <td>Dense, gummy baseline with gigantic tunneling cavern holes near top crust ("fool's crumb").</td>
+              <td>Evenly distributed, custardy, open alveoli throughout entire loaf.</td>
+              <td>Tear-away ragged holes, pale crust, flat dense crumb, flying top crust.</td>
+            </tr>
+            <tr>
+              <td><strong>Oven Spring</strong></td>
+              <td>Explosive or erratic bursting along score line or tearing at base.</td>
+              <td>Tall, rounded cross-section with pronounced ear and blooming score.</td>
+              <td>Flat saucer pancake shape; scores melt and fail to bloom in oven.</td>
+            </tr>
+            <tr>
+              <td><strong>Flavor</strong></td>
+              <td>Bland, yeasty, lacking complex lactic/acetic balance.</td>
+              <td>Complex, sweet toasted grain aroma with balanced gentle lactic tang.</td>
+              <td>Sharply sour, vinegar-like acidity; unpleasant astringent aftertaste.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- FAQs -->
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What is an aliquot jar in sourdough baking?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">
+            An aliquot jar is a small, straight-sided cylindrical container (like a spice jar or shot glass) where you place a small sample (e.g. 30g–40g) of your freshly mixed dough. By marking the starting line with a rubber band, you can accurately track the exact percentage volume rise (e.g. 50% or 75%) without disturbing the main dough bowl during coil folds.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>When does bulk fermentation start and finish?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">
+            Bulk fermentation begins the exact moment active starter (levain) is mixed into the flour and water. It ends when you divide and shape your loaves into bannetons. Stretch and folds occur <em>during</em> the first 2 hours of bulk fermentation, not before it.
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom:0.75rem;">
+            <svg class="logo-icon" viewBox="0 0 64 64"><path d="M10,44 C10,24 22,14 32,14 C42,14 54,24 54,44 C54,49 50,52 32,52 C14,52 10,49 10,44 Z" fill="#D97706"/><path d="M22,24 Q28,32 30,42" fill="none" stroke="#FEF3C7" stroke-width="3" stroke-linecap="round"/></svg>
+            <span>CrumbCraft</span>
+          </div>
+          <p style="font-size:0.875rem;">Scientific baking calculations for precision artisan bread makers.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Calculators</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Hydration & Scaler</a></li>
+            <li><a href="ddt-calculator.html">DDT Water Temp</a></li>
+            <li><a href="starter-feeding-schedule.html">Starter Feeding Planner</a></li>
+            <li><a href="fermentation-calculator.html">Bulk Fermentation Chart</a></li>
+            <li><a href="flour-protein-calculator.html">Flour Protein Blending</a></li>
+            <li><a href="yeast-converter.html">Yeast & Discard Converter</a></li>
+            <li><a href="loaf-pan-calculator.html">Bread Pan Scaler</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul class="footer-links">
+            <li><a href="guides/bakers-percentages-explained.html">Baker's Math Guide</a></li>
+            <li><a href="guides/desired-dough-temperature-guide.html">DDT & Friction Science</a></li>
+            <li><a href="guides/sourdough-hydration-crumb-guide.html">Hydration & Crumb Texture</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Engineering</h4>
+          <ul class="footer-links">
+            <li><a href="seo-dashboard.html">Live SEO Dashboard</a></li>
+            <li><a href="legal/privacy.html">Privacy Policy</a></li>
+            <li><a href="legal/terms.html">Terms of Service</a></li>
+            <li><a href="sitemap.xml">XML Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 CrumbCraft. Zero ads, zero trackers, 100% utility.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/calculators.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    (function() {
+      let isC = true;
+
+      const btnC = document.getElementById('btn-ferment-c');
+      const btnF = document.getElementById('btn-ferment-f');
+
+      const rangeTemp = document.getElementById('range-ferment-temp');
+      const numTemp = document.getElementById('num-ferment-temp');
+      const valTemp = document.getElementById('val-ferment-temp');
+
+      const rangeInoc = document.getElementById('range-ferment-inoculation');
+      const numInoc = document.getElementById('num-ferment-inoculation');
+      const valInoc = document.getElementById('val-ferment-inoculation');
+
+      const selectRetard = document.getElementById('ferment-retard');
+
+      // Outputs
+      const resHours = document.getElementById('res-bulk-hours');
+      const resRise = document.getElementById('res-target-rise');
+      const resRationale = document.getElementById('res-rise-rationale');
+
+      function updateFermentationCalc() {
+        const rawTemp = Number(numTemp.value);
+        const tempC = isC ? rawTemp : (rawTemp - 32) * 5 / 9;
+        const tempF = isC ? (rawTemp * 9 / 5 + 32) : rawTemp;
+
+        valTemp.textContent = `${tempC.toFixed(1)} °C (${tempF.toFixed(1)} °F)`;
+        const inoc = Number(numInoc.value) || 20;
+        valInoc.textContent = inoc + ' %';
+
+        // Base bulk duration at 24C (75F) with 20% starter is ~5.5 hours
+        // Arrhenius Q10: rate doubles every 10C
+        const tempDelta = tempC - 24;
+        const tempFactor = Math.pow(2, -tempDelta / 10);
+        const inocFactor = 20 / inoc; // Higher starter = faster
+
+        const medianHours = 5.5 * tempFactor * Math.sqrt(inocFactor);
+        const minHours = Math.round(medianHours * 0.85 * 10) / 10;
+        const maxHours = Math.round(medianHours * 1.15 * 10) / 10;
+
+        resHours.textContent = `${minHours} – ${maxHours} hrs`;
+
+        // Target Rise % Model
+        // Warm dough (28C) needs lower rise (~30-35%) before fridge
+        // Cold dough (18C) needs high rise (~90-100%) before fridge
+        const isColdRetard = selectRetard.value === 'cold';
+        let targetRiseLow, targetRiseHigh;
+
+        if (isColdRetard) {
+          if (tempC <= 19) { targetRiseLow = 85; targetRiseHigh = 100; }
+          else if (tempC <= 21) { targetRiseLow = 75; targetRiseHigh = 85; }
+          else if (tempC <= 23) { targetRiseLow = 60; targetRiseHigh = 70; }
+          else if (tempC <= 25) { targetRiseLow = 50; targetRiseHigh = 60; }
+          else if (tempC <= 27) { targetRiseLow = 35; targetRiseHigh = 45; }
+          else { targetRiseLow = 25; targetRiseHigh = 35; }
+        } else {
+          // Same day ambient bake needs more rise on the bench
+          if (tempC <= 21) { targetRiseLow = 100; targetRiseHigh = 115; }
+          else if (tempC <= 24) { targetRiseLow = 80; targetRiseHigh = 90; }
+          else { targetRiseLow = 60; targetRiseHigh = 70; }
+        }
+
+        resRise.textContent = `${targetRiseLow}% – ${targetRiseHigh}%`;
+
+        if (isColdRetard) {
+          resRationale.innerHTML = `At <strong>${tempC.toFixed(1)}°C (${tempF.toFixed(1)}°F)</strong>, your dough will take time to chill in the refrigerator. Stop bulk fermentation when the dough volume has increased by <strong>${targetRiseLow}%–${targetRiseHigh}%</strong> in your aliquot jar to prevent overproofing during the cold retard.`;
+        } else {
+          resRationale.innerHTML = `For a same-day room-temperature bake at <strong>${tempC.toFixed(1)}°C (${tempF.toFixed(1)}°F)</strong>, let the dough expand by <strong>${targetRiseLow}%–${targetRiseHigh}%</strong> before shaping, then proof for an additional 1.5–2 hours before baking.`;
+        }
+      }
+
+      btnC.addEventListener('click', () => {
+        if (isC) return;
+        isC = true;
+        btnC.classList.add('active');
+        btnF.classList.remove('active');
+        const cVal = (Number(numTemp.value) - 32) * 5 / 9;
+        numTemp.value = cVal.toFixed(1);
+        rangeTemp.min = 18; rangeTemp.max = 29; rangeTemp.step = 0.5; rangeTemp.value = numTemp.value;
+        updateFermentationCalc();
+      });
+
+      btnF.addEventListener('click', () => {
+        if (!isC) return;
+        isC = false;
+        btnF.classList.add('active');
+        btnC.classList.remove('active');
+        const fVal = (Number(numTemp.value) * 9 / 5) + 32;
+        numTemp.value = fVal.toFixed(1);
+        rangeTemp.min = 64; rangeTemp.max = 84; rangeTemp.step = 1; rangeTemp.value = numTemp.value;
+        updateFermentationCalc();
+      });
+
+      rangeTemp.addEventListener('input', e => { numTemp.value = e.target.value; updateFermentationCalc(); });
+      numTemp.addEventListener('input', e => { rangeTemp.value = e.target.value; updateFermentationCalc(); });
+
+      rangeInoc.addEventListener('input', e => { numInoc.value = e.target.value; updateFermentationCalc(); });
+      numInoc.addEventListener('input', e => { rangeInoc.value = e.target.value; updateFermentationCalc(); });
+
+      selectRetard.addEventListener('change', updateFermentationCalc);
+
+      document.getElementById('btn-copy-ferment').addEventListener('click', () => {
+        const info = `CRUMBCRAFT BULK FERMENTATION TARGETS:
+Dough Temperature: ${valTemp.textContent}
+Starter Inoculation: ${valInoc.textContent}
+Proofing Method: ${selectRetard.options[selectRetard.selectedIndex].text}
+---------------------------------------------
+Estimated Duration: ${resHours.textContent}
+Target Volume Rise: ${resRise.textContent}
+Calculated with CrumbCraft (https://crumbcraft.pages.dev/fermentation-calculator.html)`;
+        copyFormulaToClipboard(info);
+      });
+
+      updateFermentationCalc();
+    })();
+  </script>
+</body>
+</html>

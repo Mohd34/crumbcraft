@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="loafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#B45309" />
+    </linearGradient>
+  </defs>
+  <!-- Artisan Boule Base -->
+  <path d="M10,44 C10,24 22,14 32,14 C42,14 54,24 54,44 C54,49 50,52 32,52 C14,52 10,49 10,44 Z" fill="url(#loafGrad)" stroke="#78350F" stroke-width="2.5" />
+  <!-- Artisan Slash Scoring Marks -->
+  <path d="M22,24 Q28,32 30,42" fill="none" stroke="#FEF3C7" stroke-width="3" stroke-linecap="round" />
+  <path d="M34,22 Q38,30 42,40" fill="none" stroke="#FEF3C7" stroke-width="3" stroke-linecap="round" />
+  <path d="M16,33 Q20,38 23,45" fill="none" stroke="#FEF3C7" stroke-width="2.5" stroke-linecap="round" />
+</svg>

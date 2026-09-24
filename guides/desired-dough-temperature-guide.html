@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desired Dough Temperature (DDT) Guide & Friction Math | CrumbCraft</title>
+  <meta name="description" content="In-depth guide to Desired Dough Temperature (DDT). Learn the 3-factor and 4-factor formulas, how to calculate mixer friction factor, and thermodynamics of ice water.">
+  <link rel="canonical" href="https://crumbcraft.pages.dev/guides/desired-dough-temperature-guide.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Desired Dough Temperature (DDT) Guide & Friction Math | CrumbCraft">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Desired Dough Temperature (DDT) Guide for Artisan Bakers",
+    "author": { "@type": "Organization", "name": "CrumbCraft" },
+    "publisher": { "@type": "Organization", "name": "CrumbCraft" }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand-logo">
+        <svg class="logo-icon" viewBox="0 0 64 64"><path d="M10,44 C10,24 22,14 32,14 C42,14 54,24 54,44 C54,49 50,52 32,52 C14,52 10,49 10,44 Z" fill="#D97706"/><path d="M22,24 Q28,32 30,42" fill="none" stroke="#FEF3C7" stroke-width="3" stroke-linecap="round"/></svg>
+        <span>CrumbCraft</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Hydration Calculator</a></li>
+          <li><a href="../ddt-calculator.html" class="nav-link">DDT Water Temp</a></li>
+          <li><a href="../starter-feeding-schedule.html" class="nav-link">Starter Planner</a></li>
+          <li><a href="../fermentation-calculator.html" class="nav-link">Bulk Ferment</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top:2rem; max-width:820px;">
+    <ul class="breadcrumbs">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html">Guides</a></li>
+      <li aria-current="page">Desired Dough Temperature Guide</li>
+    </ul>
+
+    <article class="guide-section">
+      <span class="hero-badge">Thermal Physics in the Bakeshop</span>
+      <h1>The Complete Guide to Desired Dough Temperature (DDT)</h1>
+      <p class="lead">
+        Learn how temperature dictates fermentation velocity, how to measure your mixer's mechanical friction factor, and how to compute exact strike water temperatures.
+      </p>
+
+      <hr style="border:none; border-top:1px solid var(--border-subtle); margin:2rem 0;">
+
+      <h2>Why Temperature Overrules Clock Time</h2>
+      <p>
+        In baking instructions, you often read: <em>"Let dough rise for 4 to 5 hours until doubled."</em> But if your kitchen is 68°F (20°C) in winter, that dough might take 9 hours. In summer at 82°F (28°C), that same dough will turn into an overproofed pool of acid in 3.5 hours.
+      </p>
+      <p>
+        By calculating your water temperature before mixing, you hit your <strong>Desired Dough Temperature (typically 75°F to 78°F / 24°C to 26°C)</strong>, allowing you to follow consistent, repeatable production schedules every single week regardless of outdoor weather.
+      </p>
+
+      <h2>The Sourdough 4-Factor Strike Formula</h2>
+      <p>
+        Because sourdough starter or levain represents a substantial thermal mass (often 20% of the flour weight), we use the 4-factor formula:
+      </p>
+      <div style="background:var(--bg-primary); padding:1rem; border-radius:var(--radius-md); font-family:var(--font-mono); margin:1.25rem 0;">
+        Strike Water Temp = (4 × Desired Dough Temp) − (Room Temp + Flour Temp + Starter Temp + Mixer Friction)
+      </div>
+
+      <h2>How to Calculate Mixer Friction Factor ($F$)</h2>
+      <p>
+        Mixers do work on the dough. That mechanical shear is converted directly into thermal heat energy. Hand kneading adds virtually no heat (~1°C / 2°F), whereas a KitchenAid stand mixer running on speed 2 for 8 minutes can add 8°C to 11°C (15°F to 20°F) of friction heat!
+      </p>
+      <p><strong>To calculate your mixer's exact friction factor:</strong></p>
+      <ol>
+        <li>Measure the exact temperature of your Room ($T_R$), Flour ($T_F$), and Water ($T_W$) before mixing.</li>
+        <li>Mix the dough for your normal duration (e.g., 6 minutes).</li>
+        <li>Immediately probe the internal center of the mixed dough with an instant-read digital thermometer to find the Actual Dough Temp ($T_A$).</li>
+        <li>Apply the friction formula: <code>Friction = (3 × T_A) − (T_R + T_F + T_W)</code>.</li>
+      </ol>
+
+      <p style="margin-top:1.5rem;">
+        Use our interactive <a href="../ddt-calculator.html">Desired Dough Temperature Calculator</a> to calculate strike water and ice cooling with zero manual arithmetic!
+      </p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <span>© 2026 CrumbCraft. Zero ads, zero trackers.</span>
+      <a href="../ddt-calculator.html">← Go to DDT Calculator</a>
+    </div>
+  </footer>
+</body>
+</html>

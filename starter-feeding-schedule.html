@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sourdough Starter Feeding Calculator & Peak Time Schedule | CrumbCraft</title>
+  <meta name="description" content="Calculate exact sourdough starter feeding ratios (1:1:1, 1:2:2, 1:5:5) and predict peak fermentation timing based on ambient kitchen temperature and your baking schedule.">
+  <link rel="canonical" href="https://crumbcraft.pages.dev/starter-feeding-schedule.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://crumbcraft.pages.dev/starter-feeding-schedule.html">
+  <meta property="og:title" content="Sourdough Starter Feeding Calculator & Peak Time Schedule | CrumbCraft">
+  <meta property="og:description" content="Calculate exact feeding grams and predict peak fermentation hours for your baking schedule.">
+  <meta property="og:image" content="https://crumbcraft.pages.dev/assets/img/favicon.svg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#D97706">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://crumbcraft.pages.dev/starter-feeding-schedule.html#webapp",
+        "name": "CrumbCraft Sourdough Starter Feeding Calculator",
+        "url": "https://crumbcraft.pages.dev/starter-feeding-schedule.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Calculates sourdough starter feeding weights and predicts peak activity times using Arrhenius thermal growth models."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://crumbcraft.pages.dev/starter-feeding-schedule.html#breadcrumbs",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://crumbcraft.pages.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Starter Feeding Schedule", "item": "https://crumbcraft.pages.dev/starter-feeding-schedule.html" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://crumbcraft.pages.dev/starter-feeding-schedule.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the difference between a 1:1:1 and a 1:5:5 starter feeding ratio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A 1:1:1 ratio uses equal parts starter, flour, and water. Because there is a high concentration of established yeast and bacteria relative to fresh food, it peaks rapidly (typically 4–5 hours at 75°F). A 1:5:5 ratio dilutes the initial microbial population, forcing the yeast and bacteria to multiply through several generations, which extends peak time to 10–12 hours—making it ideal for overnight fermentation before morning mixing."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "When is a sourdough starter at peak activity for baking?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A starter is at peak when it has doubled or tripled in volume, the top dome surface is slightly convex or just beginning to flatten, bubbles have broken the surface, and the aroma is sweetly alcoholic with a pleasant yogurt tang, rather than sharp vinegar."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="CrumbCraft Home">
+        <svg class="logo-icon" viewBox="0 0 64 64"><path d="M10,44 C10,24 22,14 32,14 C42,14 54,24 54,44 C54,49 50,52 32,52 C14,52 10,49 10,44 Z" fill="#D97706"/><path d="M22,24 Q28,32 30,42" fill="none" stroke="#FEF3C7" stroke-width="3" stroke-linecap="round"/></svg>
+        <span>CrumbCraft</span>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Hydration</a></li>
+          <li><a href="ddt-calculator.html" class="nav-link">DDT Water Temp</a></li>
+          <li><a href="starter-feeding-schedule.html" class="nav-link active">Starter Planner</a></li>
+          <li><a href="fermentation-calculator.html" class="nav-link">Bulk Ferment</a></li>
+          <li><a href="flour-protein-calculator.html" class="nav-link">Flour Protein</a></li>
+          <li><a href="yeast-converter.html" class="nav-link">Yeast & Discard</a></li>
+          <li><a href="loaf-pan-calculator.html" class="nav-link">Pan Scaler</a></li>
+          <li><a href="seo-dashboard.html" class="nav-link" style="color:var(--brand-amber); font-weight:700;">SEO Stats</a></li>
+        </ul>
+      </nav>
+
+      <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <ul class="breadcrumbs">
+      <li><a href="index.html">Home</a></li>
+      <li aria-current="page">Sourdough Starter Feeding & Peak Timeline Planner</li>
+    </ul>
+
+    <section class="hero">
+      <span class="hero-badge">Microbial Kinetics & Timing</span>
+      <h1>Sourdough Starter Feeding Calculator & Schedule</h1>
+      <p class="lead">
+        Calculate exact ingredient weights for any feeding ratio and predict peak time based on room temperature. Time your starter so it is at maximum leavening power right when you mix.
+      </p>
+    </section>
+
+    <div class="tool-nav-wrapper">
+      <ul class="tool-tabs">
+        <li class="tool-tab-item"><a href="index.html">🍞 Hydration & Scaler</a></li>
+        <li class="tool-tab-item"><a href="ddt-calculator.html">🌡️ DDT & Water Temp</a></li>
+        <li class="tool-tab-item active"><a href="starter-feeding-schedule.html">⏰ Starter Feeding Planner</a></li>
+        <li class="tool-tab-item"><a href="fermentation-calculator.html">📈 Bulk Fermentation Chart</a></li>
+        <li class="tool-tab-item"><a href="flour-protein-calculator.html">🌾 Flour Protein & Gluten</a></li>
+        <li class="tool-tab-item"><a href="yeast-converter.html">⚖️ Yeast & Discard Converter</a></li>
+        <li class="tool-tab-item"><a href="loaf-pan-calculator.html">📏 Loaf Pan Scaler</a></li>
+      </ul>
+    </div>
+
+    <!-- Calculator Grid -->
+    <div class="calc-grid">
+      <!-- Input Panel -->
+      <section class="calc-card" aria-labelledby="starter-inputs-heading">
+        <div class="calc-card-header">
+          <h2 id="starter-inputs-heading" class="calc-card-title">Feeding Parameters</h2>
+          <span class="badge" style="background:var(--accent-olive-bg); color:var(--accent-olive); padding:3px 10px; border-radius:12px; font-size:0.8rem; font-weight:700;">100% Hydration Standard</span>
+        </div>
+
+        <form id="starter-form" onsubmit="return false;">
+          <!-- Feeding Ratio Preset -->
+          <div class="form-group">
+            <label class="form-label" for="feed-preset">
+              <span>Feeding Ratio (Starter : Flour : Water)</span>
+              <span class="form-label-val" id="val-feed-ratio">1 : 2 : 2</span>
+            </label>
+            <select class="form-input" id="feed-preset">
+              <option value="1:1:1">1:1:1 — Quick Peak (~4 to 5 hours @ 24°C / 75°F)</option>
+              <option value="1:2:2" selected>1:2:2 — Standard Bake Day (~6 to 8 hours)</option>
+              <option value="1:3:3">1:3:3 — Medium Rise (~8 to 10 hours)</option>
+              <option value="1:5:5">1:5:5 — Overnight Feed (~10 to 12 hours)</option>
+              <option value="1:10:10">1:10:10 — Slow Inoculation (~14 to 18 hours)</option>
+              <option value="custom">Custom Ratio...</option>
+            </select>
+          </div>
+
+          <!-- Custom Ratios (Hidden unless custom selected) -->
+          <div id="custom-ratio-row" style="display:none; grid-template-columns:1fr 1fr 1fr; gap:0.5rem; margin-bottom:1.25rem;">
+            <div>
+              <label style="font-size:0.75rem; color:var(--text-light);">Starter Parts</label>
+              <input type="number" class="form-input" id="ratio-starter" min="1" max="20" value="1">
+            </div>
+            <div>
+              <label style="font-size:0.75rem; color:var(--text-light);">Flour Parts</label>
+              <input type="number" class="form-input" id="ratio-flour" min="1" max="50" value="2">
+            </div>
+            <div>
+              <label style="font-size:0.75rem; color:var(--text-light);">Water Parts</label>
+              <input type="number" class="form-input" id="ratio-water" min="1" max="50" value="2">
+            </div>
+          </div>
+
+          <!-- Total Levain Needed -->
+          <div class="form-group">
+            <label class="form-label" for="target-levain-weight">
+              <span>Total Active Levain Needed for Recipe</span>
+              <span class="form-label-val" id="val-target-levain">200 g</span>
+            </label>
+            <input type="range" class="form-range" id="range-target-levain" min="50" max="1000" step="10" value="200">
+            <input type="number" class="form-input" id="num-target-levain" min="20" max="5000" value="200" style="margin-top:0.5rem;">
+            <small style="color:var(--text-light);">Includes a 15g safety margin for jar scraping loss.</small>
+          </div>
+
+          <!-- Kitchen Ambient Temperature -->
+          <div class="form-group">
+            <label class="form-label" for="feed-ambient-temp">
+              <span>Kitchen Ambient Temperature</span>
+              <span class="form-label-val" id="val-ambient-temp">24.0 °C (75.2 °F)</span>
+            </label>
+            <input type="range" class="form-range" id="range-ambient-temp" min="18" max="30" step="0.5" value="24">
+            <input type="number" class="form-input" id="num-ambient-temp" step="0.5" value="24.0" style="margin-top:0.5rem;">
+          </div>
+
+          <!-- Bake Schedule Planner (Interactive Time Picker) -->
+          <div style="background:var(--bg-tertiary); padding:1rem; border-radius:var(--radius-md); margin-top:1.5rem;">
+            <h4 style="font-size:0.9rem; margin-bottom:0.75rem;">⏰ Target Mix Time</h4>
+            <div class="form-group">
+              <label class="form-label" for="target-mix-time">What time do you plan to mix your dough?</label>
+              <input type="time" class="form-input" id="target-mix-time" value="09:00">
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- Results Panel -->
+      <section class="results-card" aria-labelledby="starter-results-heading">
+        <div class="calc-card-header">
+          <h2 id="starter-results-heading" class="calc-card-title">Feeding Plan & Timeline</h2>
+          <span class="badge" style="background:var(--brand-amber-light); color:var(--brand-warm); padding:3px 10px; border-radius:12px; font-size:0.8rem; font-weight:700;">Peak Prediction</span>
+        </div>
+
+        <!-- Feeding Grams Breakdown -->
+        <table class="formula-table">
+          <thead>
+            <tr>
+              <th>Ingredient</th>
+              <th class="num">Weight</th>
+              <th class="num">Ratio Part</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mature Starter (Seed)</td>
+              <td class="num" id="feed-seed-weight" style="font-weight:700; color:var(--brand-warm);">40.0 g</td>
+              <td class="num" id="feed-seed-part">1 part</td>
+            </tr>
+            <tr>
+              <td>Fresh Flour (50/50 Rye & Bread)</td>
+              <td class="num" id="feed-flour-weight">80.0 g</td>
+              <td class="num" id="feed-flour-part">2 parts</td>
+            </tr>
+            <tr>
+              <td>Lukewarm Water (~26°C / 78°F)</td>
+              <td class="num" id="feed-water-weight">80.0 g</td>
+              <td class="num" id="feed-water-part">2 parts</td>
+            </tr>
+            <tr style="border-top:2px solid var(--border-strong); font-weight:800;">
+              <td>Total Fed Levain</td>
+              <td class="num" id="feed-total-weight" style="color:var(--brand-amber); font-size:1.1rem;">200.0 g</td>
+              <td class="num">100% Hydration</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Estimated Peak Time Window -->
+        <div class="stat-grid" style="margin-bottom:1rem;">
+          <div class="stat-box highlight">
+            <div class="stat-label">Estimated Time to Peak</div>
+            <div class="stat-value" id="res-peak-hours">6.8 hrs</div>
+            <div class="stat-sub" id="res-peak-window">Window: 5.8h – 7.8h</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Recommended Feed Time</div>
+            <div class="stat-value" id="res-feed-time" style="font-size:1.25rem;">02:12 AM</div>
+            <div class="stat-sub">For 09:00 AM mix</div>
+          </div>
+        </div>
+
+        <!-- Visual Timeline Card -->
+        <div class="hydration-distinction">
+          <h4>🕒 Fermentation Milestones</h4>
+          <ul style="font-size:0.85rem;">
+            <li><span>Hours 1–2 (Lag Phase):</span> <span>Yeast acclimating, minimal visible rise.</span></li>
+            <li><span>Hours 3–5 (Log Phase):</span> <span>Rapid bubbling, dome rising, volume doubles.</span></li>
+            <li><span>Peak Window:</span> <span id="res-peak-text" style="color:var(--brand-amber); font-weight:700;">6.8 hours after feeding (Dome convex, max gas)</span></li>
+            <li><span>Post-Peak (Collapse):</span> <span>Dome flattens, gluten weakens, acidity increases.</span></li>
+          </ul>
+        </div>
+
+        <div class="btn-group" style="margin-top:auto;">
+          <button type="button" class="btn btn-primary" id="btn-copy-starter">
+            📋 Copy Feeding Schedule
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Educational Content -->
+    <article class="guide-section">
+      <h2>Sourdough Starter Microbiology: Inoculation Ratios Explained</h2>
+      <p>
+        The ratio at which you feed your sourdough starter is one of the most powerful control knobs in artisan bread making. It determines not only <em>when</em> your starter will be ready to bake, but also the flavor profile (acetic acid vinegar vs lactic acid yogurt) and proteolytic enzymatic degradation of your dough.
+      </p>
+
+      <h3>Ratio Comparison: Which Should You Use?</h3>
+      <div style="overflow-x:auto; margin:1.5rem 0;">
+        <table class="formula-table" style="background:var(--bg-primary); border:1px solid var(--border-subtle); border-radius:var(--radius-md);">
+          <thead>
+            <tr>
+              <th>Feeding Ratio</th>
+              <th>Typical Peak Time (at 75°F / 24°C)</th>
+              <th>Acid Level</th>
+              <th>Ideal Scenario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1 : 1 : 1</strong></td>
+              <td>3.5 – 5.0 hours</td>
+              <td>Moderate to High</td>
+              <td>Same-day fast morning bake, refreshing a neglected starter.</td>
+            </tr>
+            <tr>
+              <td><strong>1 : 2 : 2</strong></td>
+              <td>5.5 – 7.5 hours</td>
+              <td>Balanced / Sweet</td>
+              <td>Standard daily maintenance and afternoon baking schedule.</td>
+            </tr>
+            <tr>
+              <td><strong>1 : 5 : 5</strong></td>
+              <td>9.0 – 12.0 hours</td>
+              <td>Low / Mild (Sweet)</td>
+              <td>Feeding at 10 PM before bed for a morning bake at 8 AM.</td>
+            </tr>
+            <tr>
+              <td><strong>1 : 10 : 10</strong></td>
+              <td>14.0 – 18.0 hours</td>
+              <td>Very Mild</td>
+              <td>Long work day away from home, extreme warm weather protection.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- FAQs -->
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What flour blend is best for feeding sourdough starter?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">
+            A 50/50 blend of unbleached bread flour and whole rye flour (or whole wheat) is widely considered the gold standard. Rye contains high levels of fermentable sugars (fructose and amylase) and wild microbes that stimulate vigorous fermentation, while white bread flour provides gluten structure that traps gas and enables tall rise in your jar.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can I bake with my starter straight from the fridge?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">
+            If your starter was fed right before going into the fridge and is less than 3–4 days old, you can use cold discard in pancakes or crackers, but for artisan sourdough loaves, you should always give it at least one active room-temperature feeding to ensure the yeast and lactic acid bacteria have recovered from dormancy.
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom:0.75rem;">
+            <svg class="logo-icon" viewBox="0 0 64 64"><path d="M10,44 C10,24 22,14 32,14 C42,14 54,24 54,44 C54,49 50,52 32,52 C14,52 10,49 10,44 Z" fill="#D97706"/><path d="M22,24 Q28,32 30,42" fill="none" stroke="#FEF3C7" stroke-width="3" stroke-linecap="round"/></svg>
+            <span>CrumbCraft</span>
+          </div>
+          <p style="font-size:0.875rem;">Scientific sourdough calculators for artisan bakers.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Calculators</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Hydration & Scaler</a></li>
+            <li><a href="ddt-calculator.html">DDT Water Temp</a></li>
+            <li><a href="starter-feeding-schedule.html">Starter Feeding Planner</a></li>
+            <li><a href="fermentation-calculator.html">Bulk Fermentation Chart</a></li>
+            <li><a href="flour-protein-calculator.html">Flour Protein Blending</a></li>
+            <li><a href="yeast-converter.html">Yeast & Discard Converter</a></li>
+            <li><a href="loaf-pan-calculator.html">Bread Pan Scaler</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul class="footer-links">
+            <li><a href="guides/bakers-percentages-explained.html">Baker's Math Guide</a></li>
+            <li><a href="guides/desired-dough-temperature-guide.html">DDT & Friction Science</a></li>
+            <li><a href="guides/sourdough-hydration-crumb-guide.html">Hydration & Crumb Texture</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Engineering</h4>
+          <ul class="footer-links">
+            <li><a href="seo-dashboard.html">Live SEO Dashboard</a></li>
+            <li><a href="legal/privacy.html">Privacy Policy</a></li>
+            <li><a href="legal/terms.html">Terms of Service</a></li>
+            <li><a href="sitemap.xml">XML Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 CrumbCraft. Zero ads, zero trackers, 100% utility.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/calculators.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    (function() {
+      const feedPreset = document.getElementById('feed-preset');
+      const customRatioRow = document.getElementById('custom-ratio-row');
+      const ratioStarter = document.getElementById('ratio-starter');
+      const ratioFlour = document.getElementById('ratio-flour');
+      const ratioWater = document.getElementById('ratio-water');
+      const valFeedRatio = document.getElementById('val-feed-ratio');
+
+      const rangeLevain = document.getElementById('range-target-levain');
+      const numLevain = document.getElementById('num-target-levain');
+      const valTargetLevain = document.getElementById('val-target-levain');
+
+      const rangeAmbient = document.getElementById('range-ambient-temp');
+      const numAmbient = document.getElementById('num-ambient-temp');
+      const valAmbient = document.getElementById('val-ambient-temp');
+
+      const targetMixTime = document.getElementById('target-mix-time');
+
+      // Outputs
+      const seedWeight = document.getElementById('feed-seed-weight');
+      const seedPart = document.getElementById('feed-seed-part');
+      const flourWeight = document.getElementById('feed-flour-weight');
+      const flourPart = document.getElementById('feed-flour-part');
+      const waterWeight = document.getElementById('feed-water-weight');
+      const waterPart = document.getElementById('feed-water-part');
+      const totalWeight = document.getElementById('feed-total-weight');
+
+      const resPeakHours = document.getElementById('res-peak-hours');
+      const resPeakWindow = document.getElementById('res-peak-window');
+      const resFeedTime = document.getElementById('res-feed-time');
+      const resPeakText = document.getElementById('res-peak-text');
+
+      function updateStarterCalc() {
+        let sPart = 1, fPart = 2, wPart = 2;
+        if (feedPreset.value === 'custom') {
+          customRatioRow.style.display = 'grid';
+          sPart = Number(ratioStarter.value) || 1;
+          fPart = Number(ratioFlour.value) || 1;
+          wPart = Number(ratioWater.value) || 1;
+        } else {
+          customRatioRow.style.display = 'none';
+          const parts = feedPreset.value.split(':').map(Number);
+          sPart = parts[0]; fPart = parts[1]; wPart = parts[2];
+        }
+
+        valFeedRatio.textContent = `${sPart} : ${fPart} : ${wPart}`;
+        const targetTotal = Number(numLevain.value) || 200;
+        valTargetLevain.textContent = targetTotal + ' g';
+
+        const ambientC = Number(numAmbient.value) || 24;
+        const ambientF = (ambientC * 9 / 5 + 32).toFixed(1);
+        valAmbient.textContent = `${ambientC.toFixed(1)} °C (${ambientF} °F)`;
+
+        const sched = BreadEngine.calculateStarterSchedule({
+          starterRatio: sPart,
+          flourRatio: fPart,
+          waterRatio: wPart,
+          ambientTempC: ambientC,
+          targetTotalStarter: targetTotal
+        });
+
+        // Update weights
+        seedWeight.textContent = sched.starterSeedWeight.toFixed(1) + ' g';
+        seedPart.textContent = sPart + (sPart === 1 ? ' part' : ' parts');
+        flourWeight.textContent = sched.flourFeedWeight.toFixed(1) + ' g';
+        flourPart.textContent = fPart + (fPart === 1 ? ' part' : ' parts');
+        waterWeight.textContent = sched.waterFeedWeight.toFixed(1) + ' g';
+        waterPart.textContent = wPart + (wPart === 1 ? ' part' : ' parts');
+        totalWeight.textContent = targetTotal.toFixed(1) + ' g';
+
+        // Peak Hours
+        resPeakHours.textContent = sched.estimatedHoursToPeak.toFixed(1) + ' hrs';
+        resPeakWindow.textContent = `Window: ${sched.minPeakHours.toFixed(1)}h – ${sched.maxPeakHours.toFixed(1)}h`;
+        resPeakText.textContent = `${sched.estimatedHoursToPeak.toFixed(1)} hours after feeding (Dome convex, max gas leavening)`;
+
+        // Recommended Feed Time Calculation
+        if (targetMixTime.value) {
+          const [mixH, mixM] = targetMixTime.value.split(':').map(Number);
+          const now = new Date();
+          const mixDate = new Date();
+          mixDate.setHours(mixH, mixM, 0, 0);
+
+          // Subtract peak hours
+          const feedDate = new Date(mixDate.getTime() - (sched.estimatedHoursToPeak * 60 * 60 * 1000));
+          let feedH = feedDate.getHours();
+          const feedM = String(feedDate.getMinutes()).padStart(2, '0');
+          const ampm = feedH >= 12 ? 'PM' : 'AM';
+          feedH = feedH % 12 || 12;
+          resFeedTime.textContent = `${String(feedH).padStart(2, '0')}:${feedM} ${ampm}`;
+        }
+      }
+
+      feedPreset.addEventListener('change', updateStarterCalc);
+      ratioStarter.addEventListener('input', updateStarterCalc);
+      ratioFlour.addEventListener('input', updateStarterCalc);
+      ratioWater.addEventListener('input', updateStarterCalc);
+
+      rangeLevain.addEventListener('input', e => { numLevain.value = e.target.value; updateStarterCalc(); });
+      numLevain.addEventListener('input', e => { rangeLevain.value = e.target.value; updateStarterCalc(); });
+
+      rangeAmbient.addEventListener('input', e => { numAmbient.value = e.target.value; updateStarterCalc(); });
+      numAmbient.addEventListener('input', e => { rangeAmbient.value = e.target.value; updateStarterCalc(); });
+
+      targetMixTime.addEventListener('input', updateStarterCalc);
+
+      // Copy Button
+      document.getElementById('btn-copy-starter').addEventListener('click', () => {
+        const schedule = `CRUMBCRAFT STARTER FEEDING SCHEDULE:
+Feed Ratio: ${valFeedRatio.textContent}
+Target Levain: ${totalWeight.textContent}
+Ambient Kitchen Temp: ${valAmbient.textContent}
+------------------------------------
+• Starter Seed: ${seedWeight.textContent}
+• Fresh Flour: ${flourWeight.textContent}
+• Lukewarm Water: ${waterWeight.textContent}
+Estimated Peak Time: ${resPeakHours.textContent} (${resPeakWindow.textContent})
+Mix Time Planned: ${targetMixTime.value} -> Feed At: ${resFeedTime.textContent}
+Calculated with CrumbCraft (https://crumbcraft.pages.dev/starter-feeding-schedule.html)`;
+        copyFormulaToClipboard(schedule);
+      });
+
+      updateStarterCalc();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bread Pan Size to Dough Weight Calculator & Banneton Guide | CrumbCraft</title>
+  <meta name="description" content="Calculate how much dough is needed for 8.5x4.5, 9x5, Pullman pans, and banneton baskets. Computes pan cubic volume and density factors for perfect sandwich bread.">
+  <link rel="canonical" href="https://crumbcraft.pages.dev/loaf-pan-calculator.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://crumbcraft.pages.dev/loaf-pan-calculator.html">
+  <meta property="og:title" content="Bread Pan Size to Dough Weight Calculator & Banneton Guide | CrumbCraft">
+  <meta property="og:description" content="Calculate recommended dough weight based on loaf pan dimensions or proofing basket size.">
+  <meta property="og:image" content="https://crumbcraft.pages.dev/assets/img/favicon.svg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#D97706">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://crumbcraft.pages.dev/loaf-pan-calculator.html#webapp",
+        "name": "CrumbCraft Bread Pan & Banneton Scaler",
+        "url": "https://crumbcraft.pages.dev/loaf-pan-calculator.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Calculates dough weight capacity for standard sandwich loaf pans, Pullman pans, and artisan bannetons based on geometric volume and dough density constants."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://crumbcraft.pages.dev/loaf-pan-calculator.html#breadcrumbs",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://crumbcraft.pages.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Loaf Pan Scaler", "item": "https://crumbcraft.pages.dev/loaf-pan-calculator.html" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://crumbcraft.pages.dev/loaf-pan-calculator.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How much dough is needed for a 9x5 inch loaf pan?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A standard 9x5x2.75 inch loaf pan has a volume of approximately 124 cubic inches (2,030 cm³). For an open-top sandwich bread, the recommended dough weight is roughly 800g to 900g (1.75 to 2.0 lbs) of dough to produce a tall, nicely rounded crown."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much dough should you put in an 8.5x4.5 inch loaf pan?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "An 8.5x4.5x2.75 inch loaf pan (standard 1-lb pan) has a volume of approximately 105 cubic inches (1,720 cm³). It takes roughly 550g to 650g (1.2 to 1.4 lbs) of dough for a balanced loaf."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="CrumbCraft Home">
+        <svg class="logo-icon" viewBox="0 0 64 64"><path d="M10,44 C10,24 22,14 32,14 C42,14 54,24 54,44 C54,49 50,52 32,52 C14,52 10,49 10,44 Z" fill="#D97706"/><path d="M22,24 Q28,32 30,42" fill="none" stroke="#FEF3C7" stroke-width="3" stroke-linecap="round"/></svg>
+        <span>CrumbCraft</span>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Hydration</a></li>
+          <li><a href="ddt-calculator.html" class="nav-link">DDT Water Temp</a></li>
+          <li><a href="starter-feeding-schedule.html" class="nav-link">Starter Planner</a></li>
+          <li><a href="fermentation-calculator.html" class="nav-link">Bulk Ferment</a></li>
+          <li><a href="flour-protein-calculator.html" class="nav-link">Flour Protein</a></li>
+          <li><a href="yeast-converter.html" class="nav-link">Yeast & Discard</a></li>
+          <li><a href="loaf-pan-calculator.html" class="nav-link active">Pan Scaler</a></li>
+          <li><a href="seo-dashboard.html" class="nav-link" style="color:var(--brand-amber); font-weight:700;">SEO Stats</a></li>
+        </ul>
+      </nav>
+
+      <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <ul class="breadcrumbs">
+      <li><a href="index.html">Home</a></li>
+      <li aria-current="page">Bread Pan Size to Dough Weight Calculator</li>
+    </ul>
+
+    <section class="hero">
+      <span class="hero-badge">Pan Volume Geometry & Density Factors</span>
+      <h1>Bread Pan Size to Dough Weight Calculator</h1>
+      <p class="lead">
+        Determine the exact dough weight needed to fill any sandwich loaf pan, lidded Pullman pan, or proofing banneton basket. Prevent underfilled squat loaves and overflowing muffin-top spills.
+      </p>
+    </section>
+
+    <div class="tool-nav-wrapper">
+      <ul class="tool-tabs">
+        <li class="tool-tab-item"><a href="index.html">🍞 Hydration & Scaler</a></li>
+        <li class="tool-tab-item"><a href="ddt-calculator.html">🌡️ DDT & Water Temp</a></li>
+        <li class="tool-tab-item"><a href="starter-feeding-schedule.html">⏰ Starter Feeding Planner</a></li>
+        <li class="tool-tab-item"><a href="fermentation-calculator.html">📈 Bulk Fermentation Chart</a></li>
+        <li class="tool-tab-item"><a href="flour-protein-calculator.html">🌾 Flour Protein & Gluten</a></li>
+        <li class="tool-tab-item"><a href="yeast-converter.html">⚖️ Yeast & Discard Converter</a></li>
+        <li class="tool-tab-item active"><a href="loaf-pan-calculator.html">📏 Loaf Pan Scaler</a></li>
+      </ul>
+    </div>
+
+    <!-- Calculator Grid -->
+    <div class="calc-grid">
+      <!-- Input Panel -->
+      <section class="calc-card" aria-labelledby="pan-inputs-heading">
+        <div class="calc-card-header">
+          <h2 id="pan-inputs-heading" class="calc-card-title">Pan Dimensions</h2>
+          <div class="unit-toggle" role="group" aria-label="Units">
+            <button type="button" class="unit-toggle-btn active" id="btn-pan-in">Inches (in)</button>
+            <button type="button" class="unit-toggle-btn" id="btn-pan-cm">Metric (cm)</button>
+          </div>
+        </div>
+
+        <form id="pan-form" onsubmit="return false;">
+          <!-- Pan Preset Dropdown -->
+          <div class="form-group">
+            <label class="form-label" for="select-pan-preset">Standard Pan Presets</label>
+            <select class="form-input" id="select-pan-preset">
+              <option value="8.5x4.5x2.75" selected>Standard 8.5" × 4.5" (1 lb Pan - USA Pan / Nordic Ware)</option>
+              <option value="9x5x2.75">Standard 9" × 5" (1.5 lb Quick Bread / Sandwich Pan)</option>
+              <option value="9x4x4-pullman">Small Pullman 9" × 4" × 4" (Lidded Pain de Mie)</option>
+              <option value="13x4x4-pullman">Large Pullman 13" × 4" × 4" (2 lb Commercial Loaf)</option>
+              <option value="custom">Custom Dimensions...</option>
+            </select>
+          </div>
+
+          <!-- Dimension Inputs -->
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.75rem; margin-bottom:1.25rem;">
+            <div>
+              <label class="form-label" for="num-pan-l">Length</label>
+              <input type="number" class="form-input" id="num-pan-l" step="0.25" value="8.5">
+            </div>
+            <div>
+              <label class="form-label" for="num-pan-w">Width</label>
+              <input type="number" class="form-input" id="num-pan-w" step="0.25" value="4.5">
+            </div>
+            <div>
+              <label class="form-label" for="num-pan-h">Height</label>
+              <input type="number" class="form-input" id="num-pan-h" step="0.25" value="2.75">
+            </div>
+          </div>
+
+          <!-- Pan Style / Lid -->
+          <div class="form-group">
+            <label class="form-label" for="select-pan-style">Loaf Pan Style</label>
+            <select class="form-input" id="select-pan-style">
+              <option value="standard" selected>Open Top Crown (Rounded artisanal domed top)</option>
+              <option value="pullman">Lidded Pullman Pan (Square Pain de Mie sandwich slices)</option>
+            </select>
+          </div>
+        </form>
+      </section>
+
+      <!-- Output Panel -->
+      <section class="results-card" aria-labelledby="pan-results-heading">
+        <div class="calc-card-header">
+          <h2 id="pan-results-heading" class="calc-card-title">Dough Capacity Analysis</h2>
+          <span class="badge" style="background:var(--accent-olive-bg); color:var(--accent-olive); padding:3px 10px; border-radius:12px; font-size:0.8rem; font-weight:700;">Density Physics</span>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat-box highlight">
+            <div class="stat-label">Recommended Dough Weight</div>
+            <div class="stat-value" id="res-dough-weight">620 g</div>
+            <div class="stat-sub" id="res-dough-lbs">~1.37 lbs</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Pan Volume</div>
+            <div class="stat-value" id="res-pan-vol" style="font-size:1.25rem;">1,723 cm³</div>
+            <div class="stat-sub" id="res-pan-cu-in">105.1 cu in</div>
+          </div>
+        </div>
+
+        <div class="hydration-distinction">
+          <h4>🍞 Optimal Loaf Range:</h4>
+          <ul>
+            <li><span>Light / Open Sandwich:</span> <strong id="res-range-light">550 g</strong></li>
+            <li><span>Standard Crown (Optimal):</span> <strong id="res-range-opt" style="color:var(--brand-amber);">620 g</strong></li>
+            <li><span>Dense / Heavy Grain Loaf:</span> <strong id="res-range-dense">690 g</strong></li>
+          </ul>
+        </div>
+
+        <div class="btn-group" style="margin-top:auto;">
+          <button type="button" class="btn btn-primary" id="btn-copy-pan">
+            📋 Copy Pan Specs
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Banneton Sizing Guide Table -->
+    <article class="guide-section">
+      <h2>Artisan Banneton Proofing Basket Size Guide</h2>
+      <p>
+        Proofing baskets (bannetons or brotforms) support high-hydration sourdough boules and batards during the final room-temperature or cold refrigerator proof:
+      </p>
+
+      <div style="overflow-x:auto; margin:1.5rem 0;">
+        <table class="formula-table" style="background:var(--bg-primary); border:1px solid var(--border-subtle); border-radius:var(--radius-md);">
+          <thead>
+            <tr>
+              <th>Banneton Shape</th>
+              <th>Dimensions</th>
+              <th>Target Dough Weight (Grams)</th>
+              <th>Best Loaf Shape</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Round Banneton</strong></td>
+              <td>7 Inch (18 cm)</td>
+              <td>400 g – 500 g</td>
+              <td>Small round boule (lunch size)</td>
+            </tr>
+            <tr>
+              <td><strong>Round Banneton</strong></td>
+              <td>8.5 Inch (22 cm)</td>
+              <td>650 g – 850 g</td>
+              <td>Standard Dutch oven country boule</td>
+            </tr>
+            <tr>
+              <td><strong>Round Banneton</strong></td>
+              <td>10 Inch (25 cm)</td>
+              <td>900 g – 1,100 g</td>
+              <td>Large rustic miche boule</td>
+            </tr>
+            <tr>
+              <td><strong>Oval Batard</strong></td>
+              <td>8.5 Inch (21 cm)</td>
+              <td>500 g – 650 g</td>
+              <td>Small oval batard</td>
+            </tr>
+            <tr>
+              <td><strong>Oval Batard</strong></td>
+              <td>10 Inch (25 cm)</td>
+              <td>750 g – 900 g</td>
+              <td>Standard artisan batard (Challenger pan)</td>
+            </tr>
+            <tr>
+              <td><strong>Oval Batard</strong></td>
+              <td>12 Inch (30 cm)</td>
+              <td>950 g – 1,200 g</td>
+              <td>Long rustic batard / sliced sandwich loaf</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- FAQs -->
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What happens if you put too much dough in a Pullman pan?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">
+            If you overfill a lidded Pullman pan, the expanding dough will have no room to rise. The intense internal pressure forces wet dough through the pan's corner vents, producing dense, rubbery, compacted crumb with gummy corners, and potentially jamming the sliding lid shut.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How high should dough rise in an open-top sandwich pan before baking?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">
+            For an open-top sandwich pan, proof until the center of the dough dome crests approximately 1 inch (2.5 cm) above the rim of the pan. If you bake too early, the bread will tear along the sides; if you wait until it rises 2 inches above the rim, the dough will collapse during the initial heat blast in the oven.
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom:0.75rem;">
+            <svg class="logo-icon" viewBox="0 0 64 64"><path d="M10,44 C10,24 22,14 32,14 C42,14 54,24 54,44 C54,49 50,52 32,52 C14,52 10,49 10,44 Z" fill="#D97706"/><path d="M22,24 Q28,32 30,42" fill="none" stroke="#FEF3C7" stroke-width="3" stroke-linecap="round"/></svg>
+            <span>CrumbCraft</span>
+          </div>
+          <p style="font-size:0.875rem;">Scientific baking calculations for precision artisan bread makers.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Calculators</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Hydration & Scaler</a></li>
+            <li><a href="ddt-calculator.html">DDT Water Temp</a></li>
+            <li><a href="starter-feeding-schedule.html">Starter Feeding Planner</a></li>
+            <li><a href="fermentation-calculator.html">Bulk Fermentation Chart</a></li>
+            <li><a href="flour-protein-calculator.html">Flour Protein Blending</a></li>
+            <li><a href="yeast-converter.html">Yeast & Discard Converter</a></li>
+            <li><a href="loaf-pan-calculator.html">Bread Pan Scaler</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul class="footer-links">
+            <li><a href="guides/bakers-percentages-explained.html">Baker's Math Guide</a></li>
+            <li><a href="guides/desired-dough-temperature-guide.html">DDT & Friction Science</a></li>
+            <li><a href="guides/sourdough-hydration-crumb-guide.html">Hydration & Crumb Texture</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Engineering</h4>
+          <ul class="footer-links">
+            <li><a href="seo-dashboard.html">Live SEO Dashboard</a></li>
+            <li><a href="legal/privacy.html">Privacy Policy</a></li>
+            <li><a href="legal/terms.html">Terms of Service</a></li>
+            <li><a href="sitemap.xml">XML Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 CrumbCraft. Zero ads, zero trackers, 100% utility.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/calculators.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    (function() {
+      let isMetric = false;
+
+      const btnIn = document.getElementById('btn-pan-in');
+      const btnCm = document.getElementById('btn-pan-cm');
+
+      const selectPreset = document.getElementById('select-pan-preset');
+      const numL = document.getElementById('num-pan-l');
+      const numW = document.getElementById('num-pan-w');
+      const numH = document.getElementById('num-pan-h');
+      const selectStyle = document.getElementById('select-pan-style');
+
+      const resDoughWeight = document.getElementById('res-dough-weight');
+      const resDoughLbs = document.getElementById('res-dough-lbs');
+      const resPanVol = document.getElementById('res-pan-vol');
+      const resPanCuIn = document.getElementById('res-pan-cu-in');
+
+      const resRangeLight = document.getElementById('res-range-light');
+      const resRangeOpt = document.getElementById('res-range-opt');
+      const resRangeDense = document.getElementById('res-range-dense');
+
+      function updatePanCalc() {
+        let l = Number(numL.value);
+        let w = Number(numW.value);
+        let h = Number(numH.value);
+
+        // Convert to cm for BreadEngine calculation
+        const lCm = isMetric ? l : l * 2.54;
+        const wCm = isMetric ? w : w * 2.54;
+        const hCm = isMetric ? h : h * 2.54;
+
+        const res = BreadEngine.calculatePanDough({
+          lengthCm: lCm,
+          widthCm: wCm,
+          heightCm: hCm,
+          panType: selectStyle.value
+        });
+
+        resDoughWeight.textContent = res.recommendedDoughWeight + ' g';
+        resDoughLbs.textContent = '~' + (res.recommendedDoughWeight / 453.592).toFixed(2) + ' lbs';
+
+        resPanVol.textContent = res.volumeCubicCm.toLocaleString() + ' cm³';
+        resPanCuIn.textContent = res.volumeCubicInches.toFixed(1) + ' cu in';
+
+        const opt = res.recommendedDoughWeight;
+        resRangeLight.textContent = Math.round(opt * 0.9) + ' g';
+        resRangeOpt.textContent = opt + ' g';
+        resRangeDense.textContent = Math.round(opt * 1.1) + ' g';
+      }
+
+      btnIn.addEventListener('click', () => {
+        if (!isMetric) return;
+        isMetric = false;
+        btnIn.classList.add('active');
+        btnCm.classList.remove('active');
+        numL.value = (Number(numL.value) / 2.54).toFixed(2);
+        numW.value = (Number(numW.value) / 2.54).toFixed(2);
+        numH.value = (Number(numH.value) / 2.54).toFixed(2);
+        updatePanCalc();
+      });
+
+      btnCm.addEventListener('click', () => {
+        if (isMetric) return;
+        isMetric = true;
+        btnCm.classList.add('active');
+        btnIn.classList.remove('active');
+        numL.value = (Number(numL.value) * 2.54).toFixed(1);
+        numW.value = (Number(numW.value) * 2.54).toFixed(1);
+        numH.value = (Number(numH.value) * 2.54).toFixed(1);
+        updatePanCalc();
+      });
+
+      selectPreset.addEventListener('change', e => {
+        const val = e.target.value;
+        if (val === '8.5x4.5x2.75') {
+          numL.value = isMetric ? (8.5*2.54).toFixed(1) : 8.5;
+          numW.value = isMetric ? (4.5*2.54).toFixed(1) : 4.5;
+          numH.value = isMetric ? (2.75*2.54).toFixed(1) : 2.75;
+          selectStyle.value = 'standard';
+        } else if (val === '9x5x2.75') {
+          numL.value = isMetric ? (9*2.54).toFixed(1) : 9.0;
+          numW.value = isMetric ? (5*2.54).toFixed(1) : 5.0;
+          numH.value = isMetric ? (2.75*2.54).toFixed(1) : 2.75;
+          selectStyle.value = 'standard';
+        } else if (val === '9x4x4-pullman') {
+          numL.value = isMetric ? (9*2.54).toFixed(1) : 9.0;
+          numW.value = isMetric ? (4*2.54).toFixed(1) : 4.0;
+          numH.value = isMetric ? (4*2.54).toFixed(1) : 4.0;
+          selectStyle.value = 'pullman';
+        } else if (val === '13x4x4-pullman') {
+          numL.value = isMetric ? (13*2.54).toFixed(1) : 13.0;
+          numW.value = isMetric ? (4*2.54).toFixed(1) : 4.0;
+          numH.value = isMetric ? (4*2.54).toFixed(1) : 4.0;
+          selectStyle.value = 'pullman';
+        }
+        updatePanCalc();
+      });
+
+      numL.addEventListener('input', () => { selectPreset.value = 'custom'; updatePanCalc(); });
+      numW.addEventListener('input', () => { selectPreset.value = 'custom'; updatePanCalc(); });
+      numH.addEventListener('input', () => { selectPreset.value = 'custom'; updatePanCalc(); });
+      selectStyle.addEventListener('change', updatePanCalc);
+
+      document.getElementById('btn-copy-pan').addEventListener('click', () => {
+        const info = `CRUMBCRAFT LOAF PAN DOUGH CAPACITY:
+Dimensions: ${numL.value} × ${numW.value} × ${numH.value} ${isMetric ? 'cm' : 'in'}
+Pan Volume: ${resPanVol.textContent} (${resPanCuIn.textContent})
+Pan Style: ${selectStyle.options[selectStyle.selectedIndex].text}
+-----------------------------------------------
+Recommended Dough: ${resDoughWeight.textContent} (${resDoughLbs.textContent})
+Calculated with CrumbCraft (https://crumbcraft.pages.dev/loaf-pan-calculator.html)`;
+        copyFormulaToClipboard(info);
+      });
+
+      updatePanCalc();
+    })();
+  </script>
+</body>
+</html>

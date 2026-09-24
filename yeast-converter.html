@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yeast Conversion & Sourdough Discard Calculator | CrumbCraft</title>
+  <meta name="description" content="Free yeast conversion calculator. Instantly convert between Instant Dry Yeast (IDY), Active Dry Yeast (ADY), Fresh Cake Yeast, and sourdough discard with flour/water subtraction math.">
+  <link rel="canonical" href="https://crumbcraft.pages.dev/yeast-converter.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://crumbcraft.pages.dev/yeast-converter.html">
+  <meta property="og:title" content="Yeast Conversion & Sourdough Discard Calculator | CrumbCraft">
+  <meta property="og:description" content="Convert instant yeast, active dry yeast, fresh yeast, and sourdough discard in any baking recipe.">
+  <meta property="og:image" content="https://crumbcraft.pages.dev/assets/img/favicon.svg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#D97706">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://crumbcraft.pages.dev/yeast-converter.html#webapp",
+        "name": "CrumbCraft Yeast & Sourdough Discard Converter",
+        "url": "https://crumbcraft.pages.dev/yeast-converter.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Calculates conversions between commercial yeast varieties and computes flour and water subtractions when substituting sourdough discard into any baking recipe."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://crumbcraft.pages.dev/yeast-converter.html#breadcrumbs",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://crumbcraft.pages.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Yeast Converter", "item": "https://crumbcraft.pages.dev/yeast-converter.html" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://crumbcraft.pages.dev/yeast-converter.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the conversion ratio between Active Dry Yeast and Instant Yeast?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Active Dry Yeast contains roughly 25% dead yeast cells due to the high-heat drying process. Therefore, you need 25% more Active Dry Yeast than Instant Dry Yeast (multiply Instant Yeast by 1.25). Conversely, multiply Active Dry Yeast by 0.8 to find the equivalent amount of Instant Yeast."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you use sourdough discard in a normal baking recipe?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For 100% hydration sourdough discard, divide the total weight of discard by 2. Subtract that amount of flour and that amount of water from your existing recipe. For example, adding 100g of sourdough discard means subtracting 50g of flour and 50g of water from your recipe."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="CrumbCraft Home">
+        <svg class="logo-icon" viewBox="0 0 64 64"><path d="M10,44 C10,24 22,14 32,14 C42,14 54,24 54,44 C54,49 50,52 32,52 C14,52 10,49 10,44 Z" fill="#D97706"/><path d="M22,24 Q28,32 30,42" fill="none" stroke="#FEF3C7" stroke-width="3" stroke-linecap="round"/></svg>
+        <span>CrumbCraft</span>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Hydration</a></li>
+          <li><a href="ddt-calculator.html" class="nav-link">DDT Water Temp</a></li>
+          <li><a href="starter-feeding-schedule.html" class="nav-link">Starter Planner</a></li>
+          <li><a href="fermentation-calculator.html" class="nav-link">Bulk Ferment</a></li>
+          <li><a href="flour-protein-calculator.html" class="nav-link">Flour Protein</a></li>
+          <li><a href="yeast-converter.html" class="nav-link active">Yeast & Discard</a></li>
+          <li><a href="loaf-pan-calculator.html" class="nav-link">Pan Scaler</a></li>
+          <li><a href="seo-dashboard.html" class="nav-link" style="color:var(--brand-amber); font-weight:700;">SEO Stats</a></li>
+        </ul>
+      </nav>
+
+      <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <ul class="breadcrumbs">
+      <li><a href="index.html">Home</a></li>
+      <li aria-current="page">Yeast Conversion & Sourdough Discard Calculator</li>
+    </ul>
+
+    <section class="hero">
+      <span class="hero-badge">Leavening Equivalence & Substitution Math</span>
+      <h1>Yeast & Sourdough Discard Converter</h1>
+      <p class="lead">
+        Seamlessly switch between Instant Dry Yeast (IDY), Active Dry Yeast (ADY), Fresh Compressed Cake Yeast, and active sourdough starter. Automatically calculates flour and water adjustments when adding sourdough discard.
+      </p>
+    </section>
+
+    <div class="tool-nav-wrapper">
+      <ul class="tool-tabs">
+        <li class="tool-tab-item"><a href="index.html">🍞 Hydration & Scaler</a></li>
+        <li class="tool-tab-item"><a href="ddt-calculator.html">🌡️ DDT & Water Temp</a></li>
+        <li class="tool-tab-item"><a href="starter-feeding-schedule.html">⏰ Starter Feeding Planner</a></li>
+        <li class="tool-tab-item"><a href="fermentation-calculator.html">📈 Bulk Fermentation Chart</a></li>
+        <li class="tool-tab-item"><a href="flour-protein-calculator.html">🌾 Flour Protein & Gluten</a></li>
+        <li class="tool-tab-item active"><a href="yeast-converter.html">⚖️ Yeast & Discard Converter</a></li>
+        <li class="tool-tab-item"><a href="loaf-pan-calculator.html">📏 Loaf Pan Scaler</a></li>
+      </ul>
+    </div>
+
+    <!-- Dual Tool Grid -->
+    <div class="calc-grid">
+      <!-- Tool 1: Commercial Yeast Converter -->
+      <section class="calc-card" aria-labelledby="yeast-tool-heading">
+        <div class="calc-card-header">
+          <h2 id="yeast-tool-heading" class="calc-card-title">Commercial Yeast Converter</h2>
+          <span class="badge" style="background:var(--brand-amber-light); color:var(--brand-warm); padding:3px 10px; border-radius:12px; font-size:0.8rem; font-weight:700;">1 : 1.25 : 3.0 Ratio</span>
+        </div>
+
+        <form id="commercial-yeast-form" onsubmit="return false;">
+          <div class="form-group">
+            <label class="form-label" for="yeast-source-type">I Have This Type of Yeast:</label>
+            <select class="form-input" id="yeast-source-type">
+              <option value="instant" selected>Instant Dry Yeast (IDY / RapidRise / Bread Machine)</option>
+              <option value="active_dry">Active Dry Yeast (ADY)</option>
+              <option value="fresh">Fresh Cake Yeast (Compressed)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="yeast-amount">
+              <span>Amount of Yeast in Recipe</span>
+              <span class="form-label-val" id="val-yeast-amount">7.0 g (1 standard packet)</span>
+            </label>
+            <input type="number" class="form-input" id="yeast-amount" step="0.5" value="7.0" min="0.1" max="500">
+            <div style="display:flex; gap:0.5rem; margin-top:0.5rem;">
+              <button type="button" class="btn btn-secondary" style="padding:4px 8px; font-size:0.75rem;" onclick="setYeastPreset(7)">1 Packet (7g / 2.25 tsp)</button>
+              <button type="button" class="btn btn-secondary" style="padding:4px 8px; font-size:0.75rem;" onclick="setYeastPreset(3)">1 tsp (~3g)</button>
+              <button type="button" class="btn btn-secondary" style="padding:4px 8px; font-size:0.75rem;" onclick="setYeastPreset(10)">10g</button>
+            </div>
+          </div>
+
+          <!-- Equivalence Output Box -->
+          <div class="hydration-distinction" style="margin-top:1.5rem;">
+            <h4>Direct Equivalencies:</h4>
+            <ul>
+              <li><span>⚡ Instant Dry Yeast (IDY):</span> <strong id="res-idy" style="color:var(--brand-amber);">7.0 g</strong></li>
+              <li><span>🥖 Active Dry Yeast (ADY):</span> <strong id="res-ady">8.8 g</strong></li>
+              <li><span>🍰 Fresh Cake Yeast:</span> <strong id="res-fresh">21.0 g</strong></li>
+            </ul>
+          </div>
+        </form>
+      </section>
+
+      <!-- Tool 2: Sourdough Discard Recipe Integration -->
+      <section class="results-card" aria-labelledby="discard-tool-heading">
+        <div class="calc-card-header">
+          <h2 id="discard-tool-heading" class="calc-card-title">Sourdough Discard Adjuster</h2>
+          <span class="badge" style="background:var(--accent-olive-bg); color:var(--accent-olive); padding:3px 10px; border-radius:12px; font-size:0.8rem; font-weight:700;">Zero Waste Baking</span>
+        </div>
+
+        <form id="discard-form" onsubmit="return false;">
+          <div class="form-group">
+            <label class="form-label" for="discard-amount">
+              <span>Sourdough Discard to Add to Recipe</span>
+              <span class="form-label-val" id="val-discard-amount">150 g</span>
+            </label>
+            <input type="range" class="form-range" id="range-discard-amount" min="20" max="500" step="10" value="150">
+            <input type="number" class="form-input" id="num-discard-amount" min="10" max="2000" value="150" style="margin-top:0.5rem;">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="discard-hydration">Discard Hydration %</label>
+            <select class="form-input" id="discard-hydration">
+              <option value="100" selected>100% Hydration (Equal parts flour & water)</option>
+              <option value="80">80% Hydration</option>
+              <option value="50">50% Hydration (Stiff Starter)</option>
+            </select>
+          </div>
+
+          <!-- Subtraction Breakdown Card -->
+          <div class="stat-grid" style="margin-top:1.25rem;">
+            <div class="stat-box highlight">
+              <div class="stat-label">Subtract Flour From Recipe</div>
+              <div class="stat-value" id="res-sub-flour">-75.0 g</div>
+              <div class="stat-sub">Contributed by discard</div>
+            </div>
+            <div class="stat-box highlight">
+              <div class="stat-label">Subtract Liquid From Recipe</div>
+              <div class="stat-value" id="res-sub-water">-75.0 g</div>
+              <div class="stat-sub">Contributed by discard</div>
+            </div>
+          </div>
+
+          <div class="alert alert-tip" style="margin-top:1rem;">
+            <div>💡</div>
+            <div style="font-size:0.825rem;">
+              <strong>Baking Note:</strong> If your discard is straight from the fridge and unfed, still include 50% of the commercial yeast called for in the recipe so your loaf rises in a normal timeframe.
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <!-- Educational Reference Table -->
+    <article class="guide-section">
+      <h2>Commercial Yeast & Leavening Conversion Chart</h2>
+      <p>
+        Commercial baker's yeast comes in three primary forms, each containing different moisture levels and living cell counts per gram:
+      </p>
+
+      <div style="overflow-x:auto; margin:1.5rem 0;">
+        <table class="formula-table" style="background:var(--bg-primary); border:1px solid var(--border-subtle); border-radius:var(--radius-md);">
+          <thead>
+            <tr>
+              <th>Yeast Type</th>
+              <th>Moisture %</th>
+              <th>Live Cell Density</th>
+              <th>Blooming Required?</th>
+              <th>Conversion Ratio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Instant Dry Yeast (IDY)</strong></td>
+              <td>~5%</td>
+              <td>Very High (fast porous drying)</td>
+              <td>No. Mix directly into dry flour.</td>
+              <td><strong>1.0× (Baseline)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Active Dry Yeast (ADY)</strong></td>
+              <td>~8%</td>
+              <td>Moderate (outer shell of dead cells)</td>
+              <td>Recommended. Dissolve in lukewarm water.</td>
+              <td><strong>1.25×</strong> (IDY × 1.25)</td>
+            </tr>
+            <tr>
+              <td><strong>Fresh / Cake Yeast</strong></td>
+              <td>~70%</td>
+              <td>High (hydrated living cells)</td>
+              <td>Crumble into warm water or milk.</td>
+              <td><strong>3.0×</strong> (IDY × 3.0)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- FAQs -->
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can I substitute Instant Dry Yeast directly for Active Dry Yeast?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">
+            Yes! If a recipe calls for 10 grams of Active Dry Yeast, use 8 grams of Instant Dry Yeast (10g × 0.8 = 8g). You do not need to proof or bloom Instant Dry Yeast in water with sugar beforehand; you can whisk it directly into your dry flour.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Will sourdough discard make my cookies or pancakes taste sour?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">
+            Discard that has sat in the refrigerator for only 1 to 4 days has very mild, buttery lactic acidity that enhances grain flavor without being sharply sour. If your discard has sat for weeks and has a gray layer of hooch (alcohol) on top, it will have a very sharp acetic punch.
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom:0.75rem;">
+            <svg class="logo-icon" viewBox="0 0 64 64"><path d="M10,44 C10,24 22,14 32,14 C42,14 54,24 54,44 C54,49 50,52 32,52 C14,52 10,49 10,44 Z" fill="#D97706"/><path d="M22,24 Q28,32 30,42" fill="none" stroke="#FEF3C7" stroke-width="3" stroke-linecap="round"/></svg>
+            <span>CrumbCraft</span>
+          </div>
+          <p style="font-size:0.875rem;">Scientific baking calculations for precision artisan bread makers.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Calculators</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Hydration & Scaler</a></li>
+            <li><a href="ddt-calculator.html">DDT Water Temp</a></li>
+            <li><a href="starter-feeding-schedule.html">Starter Feeding Planner</a></li>
+            <li><a href="fermentation-calculator.html">Bulk Fermentation Chart</a></li>
+            <li><a href="flour-protein-calculator.html">Flour Protein Blending</a></li>
+            <li><a href="yeast-converter.html">Yeast & Discard Converter</a></li>
+            <li><a href="loaf-pan-calculator.html">Bread Pan Scaler</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guides</h4>
+          <ul class="footer-links">
+            <li><a href="guides/bakers-percentages-explained.html">Baker's Math Guide</a></li>
+            <li><a href="guides/desired-dough-temperature-guide.html">DDT & Friction Science</a></li>
+            <li><a href="guides/sourdough-hydration-crumb-guide.html">Hydration & Crumb Texture</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Engineering</h4>
+          <ul class="footer-links">
+            <li><a href="seo-dashboard.html">Live SEO Dashboard</a></li>
+            <li><a href="legal/privacy.html">Privacy Policy</a></li>
+            <li><a href="legal/terms.html">Terms of Service</a></li>
+            <li><a href="sitemap.xml">XML Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 CrumbCraft. Zero ads, zero trackers, 100% utility.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/calculators.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    const yeastSourceType = document.getElementById('yeast-source-type');
+    const yeastAmount = document.getElementById('yeast-amount');
+    const valYeastAmount = document.getElementById('val-yeast-amount');
+
+    const resIDY = document.getElementById('res-idy');
+    const resADY = document.getElementById('res-ady');
+    const resFresh = document.getElementById('res-fresh');
+
+    function updateYeastCalc() {
+      const amt = Number(yeastAmount.value) || 0;
+      valYeastAmount.textContent = amt.toFixed(1) + ' g' + (amt === 7 ? ' (1 standard packet)' : '');
+
+      const res = BreadEngine.convertYeast({
+        amount: amt,
+        fromType: yeastSourceType.value
+      });
+
+      resIDY.textContent = res.instant.toFixed(2) + ' g';
+      resADY.textContent = res.active_dry.toFixed(2) + ' g';
+      resFresh.textContent = res.fresh.toFixed(2) + ' g';
+    }
+
+    window.setYeastPreset = function(val) {
+      yeastAmount.value = val;
+      updateYeastCalc();
+    };
+
+    yeastSourceType.addEventListener('change', updateYeastCalc);
+    yeastAmount.addEventListener('input', updateYeastCalc);
+
+    // Discard Adjuster
+    const rangeDiscard = document.getElementById('range-discard-amount');
+    const numDiscard = document.getElementById('num-discard-amount');
+    const valDiscard = document.getElementById('val-discard-amount');
+    const discardHydration = document.getElementById('discard-hydration');
+
+    const resSubFlour = document.getElementById('res-sub-flour');
+    const resSubWater = document.getElementById('res-sub-water');
+
+    function updateDiscardCalc() {
+      const amt = Number(numDiscard.value) || 150;
+      valDiscard.textContent = amt + ' g';
+      const h = Number(discardHydration.value) / 100;
+
+      const flourInDiscard = amt / (1 + h);
+      const waterInDiscard = amt - flourInDiscard;
+
+      resSubFlour.textContent = '-' + flourInDiscard.toFixed(1) + ' g';
+      resSubWater.textContent = '-' + waterInDiscard.toFixed(1) + ' g';
+    }
+
+    rangeDiscard.addEventListener('input', e => { numDiscard.value = e.target.value; updateDiscardCalc(); });
+    numDiscard.addEventListener('input', e => { rangeDiscard.value = e.target.value; updateDiscardCalc(); });
+    discardHydration.addEventListener('change', updateDiscardCalc);
+
+    updateYeastCalc();
+    updateDiscardCalc();
+  </script>
+</body>
+</html>

@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sourdough Hydration Calculator & Baker's Percentage Engine | CrumbCraft</title>
+  <meta name="description" content="Free precision sourdough hydration calculator. Accurately calculates recipe hydration, starter hydration, and total true hydration with live baker's percentage scaling and crumb structure visualization.">
+  <link rel="canonical" href="https://crumbcraft.pages.dev/">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://crumbcraft.pages.dev/">
+  <meta property="og:title" content="Sourdough Hydration Calculator & Baker's Percentage Engine | CrumbCraft">
+  <meta property="og:description" content="Calculate true sourdough hydration, baker's percentages, and scale dough batches with mathematical accuracy.">
+  <meta property="og:image" content="https://crumbcraft.pages.dev/assets/img/favicon.svg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Sourdough Hydration Calculator & Baker's Percentage Engine">
+  <meta name="twitter:description" content="Calculate true sourdough hydration, starter contribution, and baker's percentages in real-time.">
+
+  <!-- Favicon & Manifest -->
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#D97706">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- JSON-LD Structured Data: WebApplication, FAQPage, BreadcrumbList, Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://crumbcraft.pages.dev/#webapp",
+        "name": "CrumbCraft Sourdough Hydration Calculator",
+        "url": "https://crumbcraft.pages.dev/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript. Requires HTML5.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Scientific sourdough hydration calculator and baker's percentage scaling engine with 3-way hydration distinction."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://crumbcraft.pages.dev/#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://crumbcraft.pages.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Hydration Calculator",
+            "item": "https://crumbcraft.pages.dev/"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://crumbcraft.pages.dev/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the difference between recipe hydration and total true hydration in sourdough?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Recipe hydration only measures the liquid water poured into the mixing bowl relative to the dry flour in the bowl. Total true hydration accounts for the flour and water already contained inside your sourdough starter or levain. In a 100% hydration starter (equal parts flour and water), adding 200g of starter adds 100g of flour and 100g of water to the total dough mass, shifting the effective hydration."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does baker's percentage work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In baker's percentages, the total dry flour is always anchored at 100%. Every other ingredient (water, starter, salt, inclusions) is expressed as a weight percentage relative to that flour. This allows recipes to be scaled up or down to any batch size without changing the dough's balance."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the best hydration percentage for beginner sourdough bakers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For beginners, a total true hydration between 65% and 70% is recommended. At this level, dough is manageable, holds tension well during pre-shaping, maintains its shape without flattening, and still delivers a tender, custardy crumb."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="CrumbCraft Home">
+        <svg class="logo-icon" viewBox="0 0 64 64">
+          <path d="M10,44 C10,24 22,14 32,14 C42,14 54,24 54,44 C54,49 50,52 32,52 C14,52 10,49 10,44 Z" fill="#D97706" />
+          <path d="M22,24 Q28,32 30,42" fill="none" stroke="#FEF3C7" stroke-width="3" stroke-linecap="round" />
+          <path d="M34,22 Q38,30 42,40" fill="none" stroke="#FEF3C7" stroke-width="3" stroke-linecap="round" />
+        </svg>
+        <span>CrumbCraft</span>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active">Hydration</a></li>
+          <li><a href="ddt-calculator.html" class="nav-link">DDT Water Temp</a></li>
+          <li><a href="starter-feeding-schedule.html" class="nav-link">Starter Planner</a></li>
+          <li><a href="fermentation-calculator.html" class="nav-link">Bulk Ferment</a></li>
+          <li><a href="flour-protein-calculator.html" class="nav-link">Flour Protein</a></li>
+          <li><a href="yeast-converter.html" class="nav-link">Yeast & Discard</a></li>
+          <li><a href="loaf-pan-calculator.html" class="nav-link">Pan Scaler</a></li>
+          <li><a href="seo-dashboard.html" class="nav-link" style="color:var(--brand-amber); font-weight:700;">SEO Stats</a></li>
+        </ul>
+      </nav>
+
+      <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumbs" aria-label="Breadcrumb">
+      <li><a href="index.html">Home</a></li>
+      <li aria-current="page">Sourdough Hydration & Baker's Percentage Engine</li>
+    </ul>
+
+    <!-- Hero Header -->
+    <section class="hero">
+      <span class="hero-badge">Artisan Bread Science Toolkit</span>
+      <h1>Sourdough Hydration Calculator & Baker's Percentage Engine</h1>
+      <p class="lead">
+        Scientifically calculate recipe hydration, starter hydration, and total true hydration in real-time. Predict crumb open structure and scale formulas with zero guesswork.
+      </p>
+    </section>
+
+    <!-- Sub-Tool Navigation Pills -->
+    <div class="tool-nav-wrapper">
+      <ul class="tool-tabs">
+        <li class="tool-tab-item active"><a href="index.html">🍞 Hydration & Scaler</a></li>
+        <li class="tool-tab-item"><a href="ddt-calculator.html">🌡️ DDT & Water Temp</a></li>
+        <li class="tool-tab-item"><a href="starter-feeding-schedule.html">⏰ Starter Feeding Planner</a></li>
+        <li class="tool-tab-item"><a href="fermentation-calculator.html">📈 Bulk Fermentation Chart</a></li>
+        <li class="tool-tab-item"><a href="flour-protein-calculator.html">🌾 Flour Protein & Gluten</a></li>
+        <li class="tool-tab-item"><a href="yeast-converter.html">⚖️ Yeast & Discard Converter</a></li>
+        <li class="tool-tab-item"><a href="loaf-pan-calculator.html">📏 Loaf Pan Scaler</a></li>
+      </ul>
+    </div>
+
+    <!-- Interactive Calculator Card Grid -->
+    <div class="calc-grid">
+      <!-- Input Panel -->
+      <section class="calc-card" aria-labelledby="calc-inputs-heading">
+        <div class="calc-card-header">
+          <h2 id="calc-inputs-heading" class="calc-card-title">Formula Inputs</h2>
+          <div class="unit-toggle" role="group" aria-label="Calculation Mode">
+            <button type="button" class="unit-toggle-btn active" id="mode-direct">By Ingredients</button>
+            <button type="button" class="unit-toggle-btn" id="mode-target">Target Weight</button>
+          </div>
+        </div>
+
+        <form id="hydration-form" onsubmit="return false;">
+          <!-- Target Weight Controls (Hidden in Direct Mode) -->
+          <div id="target-mode-panel" style="display:none; margin-bottom: 1.5rem; background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-md);">
+            <div class="form-group">
+              <label class="form-label" for="target-dough-weight">
+                <span>Target Total Dough Weight</span>
+                <span class="form-label-val" id="val-target-dough">900 g</span>
+              </label>
+              <input type="range" class="form-range" id="target-dough-weight" min="300" max="5000" step="25" value="900">
+              <input type="number" class="form-input" id="num-target-dough" min="100" max="10000" value="900" style="margin-top:0.5rem;">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="target-loaves-count">Number of Loaves: <strong id="val-loaves-count">1 loaf (900g each)</strong></label>
+              <input type="range" class="form-range" id="target-loaves-count" min="1" max="12" step="1" value="1">
+            </div>
+          </div>
+
+          <!-- Direct Flour Input -->
+          <div class="form-group" id="group-flour">
+            <label class="form-label" for="input-flour">
+              <span>Recipe Dry Flour</span>
+              <span class="form-label-val" id="val-flour">500 g</span>
+            </label>
+            <input type="range" class="form-range" id="range-flour" min="100" max="2500" step="10" value="500">
+            <input type="number" class="form-input" id="input-flour" min="10" max="20000" value="500">
+          </div>
+
+          <!-- Water Input / Hydration Slider -->
+          <div class="form-group">
+            <label class="form-label" for="range-hydration">
+              <span>Recipe Hydration (Added Water)</span>
+              <span class="form-label-val" id="val-hydration">75 % (375 g)</span>
+            </label>
+            <input type="range" class="form-range" id="range-hydration" min="50" max="100" step="1" value="75">
+            <input type="number" class="form-input" id="input-water" min="10" max="20000" value="375" style="margin-top:0.5rem;" aria-label="Water weight in grams">
+          </div>
+
+          <!-- Sourdough Starter / Levain Input -->
+          <div class="form-group">
+            <label class="form-label" for="range-starter">
+              <span>Active Starter / Levain (Baker's %)</span>
+              <span class="form-label-val" id="val-starter">20 % (100 g)</span>
+            </label>
+            <input type="range" class="form-range" id="range-starter" min="5" max="50" step="1" value="20">
+            <input type="number" class="form-input" id="input-starter" min="0" max="5000" value="100" style="margin-top:0.5rem;" aria-label="Starter weight in grams">
+          </div>
+
+          <!-- Starter Hydration % (Crucial for 3-way distinction) -->
+          <div class="form-group">
+            <label class="form-label" for="input-starter-hydration">
+              <span>Starter's Own Hydration Level</span>
+              <span class="form-label-val" id="val-starter-hydration">100 % (1:1 standard)</span>
+            </label>
+            <select class="form-input" id="input-starter-hydration">
+              <option value="100" selected>100% Hydration (Standard 1:1 Flour & Water)</option>
+              <option value="50">50% Hydration (Stiff Starter / Lievito Madre)</option>
+              <option value="60">60% Hydration (Medium Stiff Levain)</option>
+              <option value="80">80% Hydration (High Absorption Starter)</option>
+              <option value="125">125% Hydration (Liquid Levain)</option>
+              <option value="150">150% Hydration (100% Rye Liquid Starter)</option>
+            </select>
+          </div>
+
+          <!-- Salt Input -->
+          <div class="form-group">
+            <label class="form-label" for="range-salt">
+              <span>Salt (Baker's %)</span>
+              <span class="form-label-val" id="val-salt">2.0 % (10.0 g)</span>
+            </label>
+            <input type="range" class="form-range" id="range-salt" min="1.0" max="3.5" step="0.1" value="2.0">
+            <input type="number" class="form-input" id="input-salt" step="0.1" min="0" max="500" value="10.0" style="margin-top:0.5rem;" aria-label="Salt weight in grams">
+          </div>
+
+          <!-- Inclusions (Optional) -->
+          <div class="form-group">
+            <label class="form-label" for="input-inclusions">
+              <span>Optional Inclusions (Oil, Honey, Seeds)</span>
+              <span class="form-label-val" id="val-inclusions">0 g</span>
+            </label>
+            <input type="number" class="form-input" id="input-inclusions" min="0" max="1000" value="0" placeholder="0">
+          </div>
+        </form>
+      </section>
+
+      <!-- Output Panel & Visualizer -->
+      <section class="results-card" aria-labelledby="calc-results-heading">
+        <div class="calc-card-header">
+          <h2 id="calc-results-heading" class="calc-card-title">Hydration & Formula Analysis</h2>
+          <span class="badge" style="background:var(--accent-olive-bg); color:var(--accent-olive); padding:3px 10px; border-radius:12px; font-size:0.8rem; font-weight:700;">Verified Science</span>
+        </div>
+
+        <!-- The 3-Way Hydration Breakdown (Core Competitive Advantage) -->
+        <div class="hydration-distinction">
+          <h4>🧪 The 3-Way Hydration Audit</h4>
+          <ul>
+            <li>
+              <span>1. Recipe Hydration (Added Water / Recipe Flour):</span>
+              <span id="res-recipe-hydration" style="color:var(--text-muted);">75.00%</span>
+            </li>
+            <li>
+              <span>2. Starter Internal Hydration:</span>
+              <span id="res-starter-hydration">100.00%</span>
+            </li>
+            <li style="border-top: 1px dashed var(--border-strong); padding-top: 0.35rem; margin-top: 0.35rem;">
+              <span style="font-weight:700; color:var(--text-main);">3. Total True Hydration (All Water / All Flour):</span>
+              <span id="res-total-hydration" style="font-size:1.15rem; font-weight:800; color:var(--brand-amber);">77.27%</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Crumb Openness Gauge -->
+        <div class="crumb-gauge-box">
+          <div class="crumb-gauge-header">
+            <strong>Predicted Crumb Texture</strong>
+            <span id="crumb-openness-tag" style="font-weight:700; color:var(--brand-crust);">Open Artisan</span>
+          </div>
+          <div class="crumb-gauge-bar">
+            <div class="crumb-gauge-marker" id="crumb-marker" style="left: 77%;"></div>
+          </div>
+          <p class="crumb-gauge-desc" id="crumb-desc">
+            Open, custardy artisan crumb with wild alveolation. Requires good gluten development (stretch & folds / coil folds).
+          </p>
+        </div>
+
+        <!-- Formula Table -->
+        <table class="formula-table" aria-label="Calculated Ingredients Breakdown">
+          <thead>
+            <tr>
+              <th>Ingredient</th>
+              <th class="num">Grams (g)</th>
+              <th class="num">Baker's %</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Recipe Flour (in bowl)</td>
+              <td class="num" id="row-recipe-flour">500 g</td>
+              <td class="num">100.0%</td>
+            </tr>
+            <tr>
+              <td>Recipe Water (added)</td>
+              <td class="num" id="row-recipe-water">375 g</td>
+              <td class="num" id="row-water-pct">75.0%</td>
+            </tr>
+            <tr>
+              <td>Active Starter (Levain)</td>
+              <td class="num" id="row-starter">100 g</td>
+              <td class="num" id="row-starter-pct">20.0%</td>
+            </tr>
+            <tr>
+              <td><small style="color:var(--text-light); padding-left:10px;">↳ Starter Flour: <span id="sub-starter-flour">50g</span> | Starter Water: <span id="sub-starter-water">50g</span></small></td>
+              <td class="num">-</td>
+              <td class="num">-</td>
+            </tr>
+            <tr>
+              <td>Fine Sea Salt</td>
+              <td class="num" id="row-salt">10.0 g</td>
+              <td class="num" id="row-salt-pct">2.0%</td>
+            </tr>
+            <tr id="row-inc-wrapper" style="display:none;">
+              <td>Inclusions / Fats</td>
+              <td class="num" id="row-inclusions">0 g</td>
+              <td class="num" id="row-inclusions-pct">0.0%</td>
+            </tr>
+            <tr style="border-top: 2px solid var(--border-strong); font-weight:800;">
+              <td>Total Dough Mass</td>
+              <td class="num" id="row-total-dough" style="color:var(--brand-amber); font-size:1.1rem;">985 g</td>
+              <td class="num" id="row-total-pct">197.0%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Actions -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" id="btn-copy-formula">
+            📋 Copy Formula
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="window.print()">
+            🖨️ Print Bake Sheet
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Educational Guide & Scientific Content Section (SEO-Rich) -->
+    <article class="guide-section">
+      <h2>The Science of Sourdough Hydration: Why Recipe Hydration ≠ Total True Hydration</h2>
+      <p>
+        In traditional baking recipes, hydration is often loosely stated as the percentage of water poured into the mixing bowl relative to the dry flour added: <code>(Water ÷ Flour) × 100%</code>. However, when working with naturally fermented artisan sourdough, this simplified formula can lead to unpredictable, over-sticky doughs.
+      </p>
+
+      <h3>The Starter Contradiction</h3>
+      <p>
+        A standard sourdough starter is maintained at <strong>100% hydration</strong> (equal parts water and flour by weight). When you add 200 grams of starter to your dough, you are not merely adding a leavening agent; you are introducing:
+      </p>
+      <ul>
+        <li><strong>100 grams of fermented flour</strong></li>
+        <li><strong>100 grams of water</strong></li>
+      </ul>
+      <p>
+        If your mixing bowl contains 1,000g of dry flour and you add 700g of water with 200g of 100% hydration starter:
+      </p>
+      <ul>
+        <li><strong>Recipe Hydration:</strong> <code>700g ÷ 1,000g = 70.0%</code></li>
+        <li><strong>Total True Hydration:</strong> <code>(700g + 100g) ÷ (1,000g + 100g) = 800g ÷ 1,100g = 72.73%</code></li>
+      </ul>
+      <p>
+        That extra <strong>2.73% water</strong> dramatically alters the dough's viscoelasticity, extensibility, and handling characteristics. If you use a stiff starter (such as a 50% hydration Italian <em>lievito madre</em>), the opposite occurs: the starter acts as a drying agent, reducing your total hydration from 70.0% down to 68.18%.
+      </p>
+
+      <h3>Hydration Brackets & Crumb Architecture</h3>
+      <div style="overflow-x:auto; margin: 1.5rem 0;">
+        <table class="formula-table" style="background:var(--bg-primary); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
+          <thead>
+            <tr>
+              <th>Hydration Bracket</th>
+              <th>Dough Characteristics</th>
+              <th>Recommended Flour Types</th>
+              <th>Best For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>60% - 65%</strong></td>
+              <td>Firm, holds shape easily, minimal bench stickiness, very forgiving.</td>
+              <td>All-Purpose (10.5%–11.5% protein)</td>
+              <td>Sandwich loaves, sandwich rolls, bagels, pretzels</td>
+            </tr>
+            <tr>
+              <td><strong>68% - 73%</strong></td>
+              <td>Balanced extensibility and elasticity. Holds score line cleanly. Great oven spring.</td>
+              <td>Standard Bread Flour (12.0%–12.7% protein)</td>
+              <td>Classic country batard, round boules, beginner sourdough</td>
+            </tr>
+            <tr>
+              <td><strong>75% - 80%</strong></td>
+              <td>Supple, extensible, requires coil folds or stretch-and-folds to build tension.</td>
+              <td>High-Gluten / Unbleached Bread Flour (12.7%–13.5% protein)</td>
+              <td>Open crumb artisan sourdough, tartine style country loaf</td>
+            </tr>
+            <tr>
+              <td><strong>82% - 90%+</strong></td>
+              <td>Very wet, slack, custardy, translucent interior walls, fragile gluten network.</td>
+              <td>Strong Roller-Milled Bread Flour + Whole Grain Spelt/Rye</td>
+              <td>Ciabatta, Pan de Cristal, Focaccia</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- FAQ Section -->
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How does ambient kitchen temperature affect dough hydration feel?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">
+            Warm temperatures accelerate enzymatic activity (specifically amylase and protease). At temperatures above 78°F (25.5°C), protease enzymes break down gluten bonds faster, causing the dough to feel slack, wet, and sticky, even if the hydration percentage has not changed. Using our <a href="ddt-calculator.html">Desired Dough Temperature (DDT) Calculator</a> helps keep your dough at the ideal 75°F–78°F window.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can whole wheat flour absorb more water than white bread flour?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">
+            Yes! Whole wheat and whole rye flours contain wheat bran and germ, along with pentosans (hemicellulose polymers) that can absorb up to 10 to 15 times their dry weight in water. When blending 20% to 30% whole wheat into your recipe, you can typically increase your recipe hydration by 3% to 5% without the dough becoming slack.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Why is salt always calculated at 2% in baker's math?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">
+            Salt provides three essential functions in artisan bread: flavor enhancement, yeast regulation, and gluten tightening. Salt ions mask electrical charges on gluten proteins, allowing them to bind more tightly and produce a stronger gluten matrix. Most artisan recipes use between 1.8% and 2.2% fine sea salt.
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom:0.75rem;">
+            <svg class="logo-icon" viewBox="0 0 64 64"><path d="M10,44 C10,24 22,14 32,14 C42,14 54,24 54,44 C54,49 50,52 32,52 C14,52 10,49 10,44 Z" fill="#D97706"/><path d="M22,24 Q28,32 30,42" fill="none" stroke="#FEF3C7" stroke-width="3" stroke-linecap="round"/></svg>
+            <span>CrumbCraft</span>
+          </div>
+          <p style="font-size:0.875rem;">
+            The scientific artisan bread and sourdough calculation suite. Built for passionate home bakers, cottage micro-bakeries, and pizzaiolos who demand mathematical consistency.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Calculators</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Hydration & Scaler</a></li>
+            <li><a href="ddt-calculator.html">DDT Water Temp</a></li>
+            <li><a href="starter-feeding-schedule.html">Starter Feeding Planner</a></li>
+            <li><a href="fermentation-calculator.html">Bulk Fermentation Chart</a></li>
+            <li><a href="flour-protein-calculator.html">Flour Protein Blending</a></li>
+            <li><a href="yeast-converter.html">Yeast & Discard Converter</a></li>
+            <li><a href="loaf-pan-calculator.html">Bread Pan Scaler</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Guides & Science</h4>
+          <ul class="footer-links">
+            <li><a href="guides/bakers-percentages-explained.html">Baker's Math Guide</a></li>
+            <li><a href="guides/desired-dough-temperature-guide.html">DDT & Friction Science</a></li>
+            <li><a href="guides/sourdough-hydration-crumb-guide.html">Hydration & Crumb Texture</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Engineering</h4>
+          <ul class="footer-links">
+            <li><a href="seo-dashboard.html">Live SEO Dashboard</a></li>
+            <li><a href="legal/privacy.html">Privacy Policy</a></li>
+            <li><a href="legal/terms.html">Terms of Service</a></li>
+            <li><a href="sitemap.xml">XML Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 CrumbCraft. Dedicated to the craft of artisan bread. Zero ads, zero trackers, 100% utility.</span>
+        <span>Version 1.0.0 (Production)</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/calculators.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    // Live UI Controller for Hydration Engine
+    (function() {
+      let isTargetMode = false;
+
+      // DOM Elements
+      const modeDirectBtn = document.getElementById('mode-direct');
+      const modeTargetBtn = document.getElementById('mode-target');
+      const targetPanel = document.getElementById('target-mode-panel');
+      const groupFlour = document.getElementById('group-flour');
+
+      const rangeFlour = document.getElementById('range-flour');
+      const inputFlour = document.getElementById('input-flour');
+      const valFlour = document.getElementById('val-flour');
+
+      const rangeHydration = document.getElementById('range-hydration');
+      const inputWater = document.getElementById('input-water');
+      const valHydration = document.getElementById('val-hydration');
+
+      const rangeStarter = document.getElementById('range-starter');
+      const inputStarter = document.getElementById('input-starter');
+      const valStarter = document.getElementById('val-starter');
+
+      const inputStarterHydration = document.getElementById('input-starter-hydration');
+      const valStarterHydration = document.getElementById('val-starter-hydration');
+
+      const rangeSalt = document.getElementById('range-salt');
+      const inputSalt = document.getElementById('input-salt');
+      const valSalt = document.getElementById('val-salt');
+
+      const inputInclusions = document.getElementById('input-inclusions');
+      const valInclusions = document.getElementById('val-inclusions');
+
+      const targetDoughRange = document.getElementById('target-dough-weight');
+      const targetDoughNum = document.getElementById('num-target-dough');
+      const valTargetDough = document.getElementById('val-target-dough');
+      const targetLoavesRange = document.getElementById('target-loaves-count');
+      const valLoavesCount = document.getElementById('val-loaves-count');
+
+      // Results Elements
+      const resRecipeHydration = document.getElementById('res-recipe-hydration');
+      const resStarterHydration = document.getElementById('res-starter-hydration');
+      const resTotalHydration = document.getElementById('res-total-hydration');
+      const crumbTag = document.getElementById('crumb-openness-tag');
+      const crumbMarker = document.getElementById('crumb-marker');
+      const crumbDesc = document.getElementById('crumb-desc');
+
+      const rowRecipeFlour = document.getElementById('row-recipe-flour');
+      const rowRecipeWater = document.getElementById('row-recipe-water');
+      const rowWaterPct = document.getElementById('row-water-pct');
+      const rowStarter = document.getElementById('row-starter');
+      const rowStarterPct = document.getElementById('row-starter-pct');
+      const subStarterFlour = document.getElementById('sub-starter-flour');
+      const subStarterWater = document.getElementById('sub-starter-water');
+      const rowSalt = document.getElementById('row-salt');
+      const rowSaltPct = document.getElementById('row-salt-pct');
+      const rowIncWrapper = document.getElementById('row-inc-wrapper');
+      const rowInclusions = document.getElementById('row-inclusions');
+      const rowInclusionsPct = document.getElementById('row-inclusions-pct');
+      const rowTotalDough = document.getElementById('row-total-dough');
+      const rowTotalPct = document.getElementById('row-total-pct');
+
+      function updateCalculator() {
+        let flourW, waterW, starterW, saltW, incW;
+        const starterHydrationVal = Number(inputStarterHydration.value) || 100;
+        valStarterHydration.textContent = starterHydrationVal + '% (' + (starterHydrationVal === 100 ? '1:1 standard' : starterHydrationVal + '% levain') + ')';
+
+        if (isTargetMode) {
+          const totalTarget = (Number(targetDoughNum.value) || 900) * (Number(targetLoavesRange.value) || 1);
+          const hydrationPct = Number(rangeHydration.value) || 75;
+          const starterPct = Number(rangeStarter.value) || 20;
+          const saltPct = Number(rangeSalt.value) || 2.0;
+
+          const scaled = BreadEngine.scaleRecipe({
+            targetTotalWeight: totalTarget,
+            recipeHydrationPct: hydrationPct,
+            starterPct: starterPct,
+            saltPct: saltPct,
+            starterHydrationPct: starterHydrationVal
+          });
+
+          flourW = scaled.recipeFlour;
+          waterW = scaled.recipeWater;
+          starterW = scaled.starterWeight;
+          saltW = (flourW * saltPct) / 100;
+          incW = 0;
+
+          // Sync input fields
+          inputFlour.value = Math.round(flourW);
+          rangeFlour.value = Math.round(flourW);
+          valFlour.textContent = Math.round(flourW) + ' g';
+          inputWater.value = Math.round(waterW);
+          inputStarter.value = Math.round(starterW);
+          inputSalt.value = (Math.round(saltW * 10) / 10).toFixed(1);
+        } else {
+          flourW = Number(inputFlour.value) || 500;
+          waterW = Number(inputWater.value) || 375;
+          starterW = Number(inputStarter.value) || 100;
+          saltW = Number(inputSalt.value) || 10.0;
+          incW = Number(inputInclusions.value) || 0;
+        }
+
+        const res = BreadEngine.calculateHydration({
+          flourWeight: flourW,
+          waterWeight: waterW,
+          starterWeight: starterW,
+          starterHydrationPct: starterHydrationVal,
+          saltWeight: saltW,
+          inclusionWeight: incW
+        });
+
+        // Update Labels
+        valFlour.textContent = Math.round(res.recipeFlour) + ' g';
+        valHydration.textContent = res.waterBakerPct.toFixed(1) + ' % (' + Math.round(res.recipeWater) + ' g)';
+        valStarter.textContent = res.starterBakerPct.toFixed(1) + ' % (' + Math.round(res.starterWeight) + ' g)';
+        valSalt.textContent = res.saltBakerPct.toFixed(1) + ' % (' + res.saltBakerPct > 0 ? (res.recipeFlour * res.saltBakerPct / 100).toFixed(1) : '0' + ' g)';
+        valInclusions.textContent = Math.round(incW) + ' g';
+
+        // 3-Way Hydration Breakdown
+        resRecipeHydration.textContent = res.recipeHydrationPct.toFixed(2) + '%';
+        resStarterHydration.textContent = res.starterHydrationPct.toFixed(2) + '%';
+        resTotalHydration.textContent = res.totalHydrationPct.toFixed(2) + '%';
+
+        // Crumb Openness Gauge
+        crumbMarker.style.left = Math.min(95, Math.max(5, res.crumbOpennessScore)) + '%';
+        crumbDesc.textContent = res.crumbDescription;
+        if (res.totalHydrationPct < 65) crumbTag.textContent = "Dense Sandwich Crumb";
+        else if (res.totalHydrationPct <= 72) crumbTag.textContent = "Classic Artisan Crumb";
+        else if (res.totalHydrationPct <= 78) crumbTag.textContent = "Open Artisan Crumb";
+        else crumbTag.textContent = "Super Open / Ciabatta Crumb";
+
+        // Table Rows
+        rowRecipeFlour.textContent = Math.round(res.recipeFlour) + ' g';
+        rowRecipeWater.textContent = Math.round(res.recipeWater) + ' g';
+        rowWaterPct.textContent = res.waterBakerPct.toFixed(1) + '%';
+        rowStarter.textContent = Math.round(res.starterWeight) + ' g';
+        rowStarterPct.textContent = res.starterBakerPct.toFixed(1) + '%';
+        subStarterFlour.textContent = Math.round(res.starterFlour) + 'g';
+        subStarterWater.textContent = Math.round(res.starterWater) + 'g';
+        rowSalt.textContent = saltW.toFixed(1) + ' g';
+        rowSaltPct.textContent = res.saltBakerPct.toFixed(1) + '%';
+
+        if (incW > 0) {
+          rowIncWrapper.style.display = 'table-row';
+          rowInclusions.textContent = Math.round(incW) + ' g';
+          rowInclusionsPct.textContent = res.inclusionBakerPct.toFixed(1) + '%';
+        } else {
+          rowIncWrapper.style.display = 'none';
+        }
+
+        rowTotalDough.textContent = Math.round(res.totalDoughWeight) + ' g';
+        rowTotalPct.textContent = (100 + res.waterBakerPct + res.starterBakerPct + res.saltBakerPct + res.inclusionBakerPct).toFixed(1) + '%';
+      }
+
+      // Mode Switch Handlers
+      modeDirectBtn.addEventListener('click', () => {
+        isTargetMode = false;
+        modeDirectBtn.classList.add('active');
+        modeTargetBtn.classList.remove('active');
+        targetPanel.style.display = 'none';
+        groupFlour.style.display = 'block';
+        updateCalculator();
+      });
+
+      modeTargetBtn.addEventListener('click', () => {
+        isTargetMode = true;
+        modeTargetBtn.classList.add('active');
+        modeDirectBtn.classList.remove('active');
+        targetPanel.style.display = 'block';
+        groupFlour.style.display = 'none';
+        updateCalculator();
+      });
+
+      // Slider & Input Bindings
+      rangeFlour.addEventListener('input', (e) => {
+        inputFlour.value = e.target.value;
+        updateCalculator();
+      });
+      inputFlour.addEventListener('input', (e) => {
+        rangeFlour.value = e.target.value;
+        updateCalculator();
+      });
+
+      rangeHydration.addEventListener('input', (e) => {
+        const flour = Number(inputFlour.value) || 500;
+        inputWater.value = Math.round((flour * Number(e.target.value)) / 100);
+        updateCalculator();
+      });
+      inputWater.addEventListener('input', (e) => {
+        const flour = Number(inputFlour.value) || 500;
+        rangeHydration.value = Math.round((Number(e.target.value) / flour) * 100);
+        updateCalculator();
+      });
+
+      rangeStarter.addEventListener('input', (e) => {
+        const flour = Number(inputFlour.value) || 500;
+        inputStarter.value = Math.round((flour * Number(e.target.value)) / 100);
+        updateCalculator();
+      });
+      inputStarter.addEventListener('input', (e) => {
+        const flour = Number(inputFlour.value) || 500;
+        rangeStarter.value = Math.round((Number(e.target.value) / flour) * 100);
+        updateCalculator();
+      });
+
+      inputStarterHydration.addEventListener('change', updateCalculator);
+
+      rangeSalt.addEventListener('input', (e) => {
+        const flour = Number(inputFlour.value) || 500;
+        inputSalt.value = ((flour * Number(e.target.value)) / 100).toFixed(1);
+        updateCalculator();
+      });
+      inputSalt.addEventListener('input', (e) => {
+        const flour = Number(inputFlour.value) || 500;
+        rangeSalt.value = ((Number(e.target.value) / flour) * 100).toFixed(1);
+        updateCalculator();
+      });
+
+      inputInclusions.addEventListener('input', updateCalculator);
+
+      targetDoughRange.addEventListener('input', (e) => {
+        targetDoughNum.value = e.target.value;
+        valTargetDough.textContent = e.target.value + ' g';
+        updateCalculator();
+      });
+      targetDoughNum.addEventListener('input', (e) => {
+        targetDoughRange.value = e.target.value;
+        valTargetDough.textContent = e.target.value + ' g';
+        updateCalculator();
+      });
+      targetLoavesRange.addEventListener('input', (e) => {
+        const count = Number(e.target.value);
+        valLoavesCount.textContent = count + (count === 1 ? ' loaf (' : ' loaves (') + targetDoughNum.value + 'g each)';
+        updateCalculator();
+      });
+
+      // Copy Formula Button
+      document.getElementById('btn-copy-formula').addEventListener('click', () => {
+        const formulaText = `CRUMBCRAFT SOURDOUGH FORMULA:
+Recipe Flour: ${rowRecipeFlour.textContent} (100%)
+Recipe Water: ${rowRecipeWater.textContent} (${rowWaterPct.textContent})
+Starter (Levain): ${rowStarter.textContent} (${rowStarterPct.textContent}) [Flour: ${subStarterFlour.textContent}, Water: ${subStarterWater.textContent}]
+Salt: ${rowSalt.textContent} (${rowSaltPct.textContent})
+--------------------------
+Total Dough Mass: ${rowTotalDough.textContent}
+Total True Hydration: ${resTotalHydration.textContent}
+Recipe Hydration: ${resRecipeHydration.textContent}
+Calculated with CrumbCraft (https://crumbcraft.pages.dev)`;
+        copyFormulaToClipboard(formulaText);
+      });
+
+      // Initial Run
+      updateCalculator();
+    })();
+  </script>
+</body>
+</html>
