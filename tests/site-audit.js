@@ -23,7 +23,7 @@ const sitemapPath = path.join(rootDir, 'sitemap.xml');
 assertCheck('sitemap.xml exists', fs.existsSync(sitemapPath));
 
 const sitemapContent = fs.readFileSync(sitemapPath, 'utf8');
-const locMatches = [...sitemapContent.matchAll(/<loc>https:\/\/crumbcraft\.pages\.dev\/(.*?)<\/loc>/g)];
+const locMatches = [...sitemapContent.matchAll(/<loc>https:\/\/mohd34\.github\.io\/crumbcraft\/?(.*?)<\/loc>/g)];
 console.log(`\nFound ${locMatches.length} URLs in sitemap.xml:`);
 
 locMatches.forEach(m => {

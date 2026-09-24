@@ -1,8 +1,8 @@
-# Robots.txt for CrumbCraft (https://crumbcraft.pages.dev)
+# Robots.txt for CrumbCraft (https://mohd34.github.io/crumbcraft)
 # Dedicated to artisan sourdough & baker's math
 
 User-agent: *
 Allow: /
 
 # Sitemap Location
-Sitemap: https://crumbcraft.pages.dev/sitemap.xml
+Sitemap: https://mohd34.github.io/crumbcraft/sitemap.xml

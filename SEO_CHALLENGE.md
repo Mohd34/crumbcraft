@@ -1,7 +1,7 @@
 # AI SEO RANK CHALLENGE: DOCUMENTATION & STRATEGY REPORT
 ## Project: CrumbCraft (The Artisan Sourdough & Baker's Math Engine)
 
-**Domain:** `https://crumbcraft.pages.dev` (Production Deployment Ready)  
+**Domain:** `https://mohd34.github.io/crumbcraft` (Production Deployment Ready)  
 **Status:** Verification Gate Passed (100%), Built, Audited, Deployed  
 **Audit Score:** 87/87 Technical Checks Passed (0 Failures), 8/8 Formula Unit Tests Passed (100%)
 
@@ -118,7 +118,7 @@ $$\text{Instant Dry Yeast (IDY)} : \text{Active Dry Yeast (ADY)} : \text{Fresh C
 - **Hosting Cost:** $0.00 / month forever.
 - **Global CDN:** Cloudflare edge network with automated HTTPS/SSL.
 - **Static Integrity:** `.nojekyll` configuration file included.
-- **Production URL:** `https://crumbcraft.pages.dev` (or GitHub Pages equivalent).
+- **Production URL:** `https://mohd34.github.io/crumbcraft` (or GitHub Pages equivalent).
 
 ### CI/CD Deployment Workflow
 Located in `.github/workflows/deploy.yml`:
@@ -136,13 +136,13 @@ Located in `.github/workflows/deploy.yml`:
    <meta name="google-site-verification" content="YOUR_GSC_TOKEN_HERE">
    ```
 2. Submit XML sitemap in Search Console:
-   `https://crumbcraft.pages.dev/sitemap.xml`
+   `https://mohd34.github.io/crumbcraft/sitemap.xml`
 3. Request indexation for key priority landing pages:
-   - `https://crumbcraft.pages.dev/` (P1)
-   - `https://crumbcraft.pages.dev/ddt-calculator.html` (P1)
-   - `https://crumbcraft.pages.dev/starter-feeding-schedule.html` (P1)
-   - `https://crumbcraft.pages.dev/fermentation-calculator.html` (P1)
-   - `https://crumbcraft.pages.dev/flour-protein-calculator.html` (P1)
+   - `https://mohd34.github.io/crumbcraft/` (P1)
+   - `https://mohd34.github.io/crumbcraft/ddt-calculator.html` (P1)
+   - `https://mohd34.github.io/crumbcraft/starter-feeding-schedule.html` (P1)
+   - `https://mohd34.github.io/crumbcraft/fermentation-calculator.html` (P1)
+   - `https://mohd34.github.io/crumbcraft/flour-protein-calculator.html` (P1)
 
 ---
 
