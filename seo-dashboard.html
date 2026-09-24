@@ -73,28 +73,28 @@
     <div class="stat-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom:2.5rem;">
       <div class="stat-box highlight">
         <div class="stat-label">Total Organic Clicks</div>
-        <div class="stat-value" id="kpi-clicks">942</div>
-        <div class="stat-sub" style="color:#166534; font-weight:600;">↑ +18.4% last 28 days</div>
+        <div class="stat-value" id="kpi-clicks">0</div>
+        <div class="stat-sub" style="color:var(--text-muted); font-weight:600;">Day 0 Baseline</div>
       </div>
       <div class="stat-box">
         <div class="stat-label">Total Impressions</div>
-        <div class="stat-value" id="kpi-impressions">14,280</div>
-        <div class="stat-sub" style="color:#166534; font-weight:600;">↑ +24.1% last 28 days</div>
+        <div class="stat-value" id="kpi-impressions">0</div>
+        <div class="stat-sub" style="color:var(--text-muted); font-weight:600;">Day 0 Baseline</div>
       </div>
       <div class="stat-box">
         <div class="stat-label">Average CTR</div>
-        <div class="stat-value" id="kpi-ctr">6.6%</div>
-        <div class="stat-sub">Benchmark: 3.2%</div>
+        <div class="stat-value" id="kpi-ctr">0.0%</div>
+        <div class="stat-sub" style="color:var(--text-muted);">Pre-Index Baseline</div>
       </div>
       <div class="stat-box">
         <div class="stat-label">Average Position</div>
-        <div class="stat-value" id="kpi-position">8.4</div>
-        <div class="stat-sub" style="color:#166534; font-weight:600;">↑ +1.6 pos gained</div>
+        <div class="stat-value" id="kpi-position" style="font-size:1.4rem;">Pending / Pre-Index</div>
+        <div class="stat-sub" style="color:var(--text-muted); font-weight:600;">Awaiting Googlebot</div>
       </div>
       <div class="stat-box">
         <div class="stat-label">Indexed URLs</div>
-        <div class="stat-value">11 / 11</div>
-        <div class="stat-sub" style="color:#166534; font-weight:600;">100% Crawl Coverage</div>
+        <div class="stat-value" style="font-size:1.4rem;">13 Submitted</div>
+        <div class="stat-sub" style="color:#D97706; font-weight:600;">Pending Crawl</div>
       </div>
     </div>
 
@@ -103,7 +103,7 @@
       <div class="calc-card-header">
         <div>
           <h2 class="calc-card-title" style="margin:0;">Target Keyword Portfolio & Rankings</h2>
-          <small style="color:var(--text-muted);">Tracking 85+ high-intent queries across 8 tactical clusters</small>
+          <small style="color:var(--text-muted);">Tracking 22 high-priority queries across 7 technical calculator clusters</small>
         </div>
         <input type="text" id="keyword-filter" class="form-input" placeholder="Filter keywords..." style="max-width:240px; padding:6px 12px; font-size:0.85rem;">
       </div>
@@ -130,34 +130,18 @@
     </section>
 
     <!-- Query Momentum: Winners vs Strike-Zone Opportunities -->
-    <div class="calc-grid" style="margin-bottom:2.5rem;">
+    <div class="calc-grid" style="grid-template-columns: 1fr 1fr; margin-bottom:2.5rem;">
       <section class="calc-card">
         <div class="calc-card-header">
-          <h3 class="calc-card-title" style="font-size:1.15rem; color:#166534;">🚀 Pages & Queries Gaining Impressions</h3>
+          <h3 class="calc-card-title" style="font-size:1.15rem; color:#166534;">🚀 Query & Impression Momentum</h3>
         </div>
-        <ul style="list-style:none; font-size:0.9rem;">
-          <li style="padding:0.75rem 0; border-bottom:1px solid var(--border-subtle); display:flex; justify-content:space-between;">
-            <div>
-              <strong>/ddt-calculator.html</strong>
-              <div style="font-size:0.8rem; color:var(--text-muted);">"desired dough temperature calculator"</div>
-            </div>
-            <span style="color:#166534; font-weight:700;">+38% Imp / Pos 3.2</span>
-          </li>
-          <li style="padding:0.75rem 0; border-bottom:1px solid var(--border-subtle); display:flex; justify-content:space-between;">
-            <div>
-              <strong>/index.html</strong>
-              <div style="font-size:0.8rem; color:var(--text-muted);">"sourdough hydration calculator 75%"</div>
-            </div>
-            <span style="color:#166534; font-weight:700;">+29% Imp / Pos 6.4</span>
-          </li>
-          <li style="padding:0.75rem 0; display:flex; justify-content:space-between;">
-            <div>
-              <strong>/fermentation-calculator.html</strong>
-              <div style="font-size:0.8rem; color:var(--text-muted);">"bulk fermentation temperature chart"</div>
-            </div>
-            <span style="color:#166534; font-weight:700;">+44% Imp / Pos 11.2</span>
-          </li>
-        </ul>
+        <div style="padding:1.5rem 1rem; text-align:center; color:var(--text-muted); font-size:0.9rem;">
+          <div style="font-size:2rem; margin-bottom:0.5rem;">⏳</div>
+          <strong style="color:var(--text-main);">Awaiting Initial Google Search Console Aggregation</strong>
+          <p style="margin-top:0.5rem; font-size:0.85rem; line-height:1.5; color:var(--text-muted);">
+            Sitemap submitted to search engines on 2026-09-24. GSC telemetry will populate query impressions, clicks, and ranking momentum as soon as Googlebot completes initial crawling passes.
+          </p>
+        </div>
       </section>
 
       <section class="calc-card">
@@ -167,29 +151,12 @@
         <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">
           Queries ranking just off page 1 where targeted internal linking and snippet refinement can yield exponential click traffic:
         </p>
-        <ul style="list-style:none; font-size:0.9rem;">
-          <li style="padding:0.75rem 0; border-bottom:1px solid var(--border-subtle); display:flex; justify-content:space-between;">
-            <div>
-              <strong>"how long to bulk ferment at 68 degrees"</strong>
-              <div style="font-size:0.8rem; color:var(--text-muted);">Landing: /fermentation-calculator.html</div>
-            </div>
-            <span style="color:var(--brand-warm); font-weight:700;">Position 12.1</span>
-          </li>
-          <li style="padding:0.75rem 0; border-bottom:1px solid var(--border-subtle); display:flex; justify-content:space-between;">
-            <div>
-              <strong>"active dry yeast to instant yeast conversion"</strong>
-              <div style="font-size:0.8rem; color:var(--text-muted);">Landing: /yeast-converter.html</div>
-            </div>
-            <span style="color:var(--brand-warm); font-weight:700;">Position 14.5</span>
-          </li>
-          <li style="padding:0.75rem 0; display:flex; justify-content:space-between;">
-            <div>
-              <strong>"bread pan size dough weight formula"</strong>
-              <div style="font-size:0.8rem; color:var(--text-muted);">Landing: /loaf-pan-calculator.html</div>
-            </div>
-            <span style="color:var(--brand-warm); font-weight:700;">Position 11.8</span>
-          </li>
-        </ul>
+        <div style="padding:1.5rem 1rem; text-align:center; color:var(--text-muted); font-size:0.9rem; background:var(--bg-tertiary); border-radius:8px;">
+          <strong style="color:var(--text-main);">Strike Zone Sniping Protocol Armed</strong>
+          <p style="margin-top:0.5rem; font-size:0.85rem; line-height:1.5; color:var(--text-muted); margin-bottom:0;">
+            Monitoring 22 priority keywords. High-ROI optimization will activate immediately once any query registers positions 11–20 with >100 impressions in Search Console.
+          </p>
+        </div>
       </section>
     </div>
 
@@ -236,7 +203,7 @@
       // Top stats
       document.getElementById('kpi-clicks').textContent = SEODashboard.siteSummary.gscMetrics.totalClicks.toLocaleString();
       document.getElementById('kpi-impressions').textContent = SEODashboard.siteSummary.gscMetrics.totalImpressions.toLocaleString();
-      document.getElementById('kpi-ctr').textContent = SEODashboard.siteSummary.gscMetrics.averageCtr + '%';
+      document.getElementById('kpi-ctr').textContent = SEODashboard.siteSummary.gscMetrics.averageCtr;
       document.getElementById('kpi-position').textContent = SEODashboard.siteSummary.gscMetrics.averagePosition;
 
       // Keywords Table
@@ -244,14 +211,16 @@
       kwTbody.innerHTML = '';
       SEODashboard.keywords.forEach(kw => {
         const tr = document.createElement('tr');
+        const ctrDisplay = typeof kw.ctr === 'number' ? kw.ctr.toFixed(2) + '%' : kw.ctr;
+        const posDisplay = typeof kw.avgPosition === 'number' ? kw.avgPosition.toFixed(1) : kw.avgPosition;
         tr.innerHTML = `
           <td><strong>${kw.keyword}</strong></td>
           <td><a href="${kw.url}" style="font-size:0.85rem; color:var(--text-muted);">${kw.url}</a></td>
           <td class="num">${kw.impressions.toLocaleString()}</td>
           <td class="num">${kw.clicks}</td>
-          <td class="num" style="color:var(--brand-amber); font-weight:700;">${kw.ctr.toFixed(2)}%</td>
-          <td class="num" style="font-weight:700;">${kw.avgPosition.toFixed(1)}</td>
-          <td style="color:#166534; font-size:0.85rem; font-weight:600;">${kw.trend}</td>
+          <td class="num" style="color:var(--brand-amber); font-weight:700;">${ctrDisplay}</td>
+          <td class="num" style="font-weight:700;">${posDisplay}</td>
+          <td style="color:#64748B; font-size:0.85rem; font-weight:600;">${kw.trend}</td>
           <td><span style="background:var(--bg-tertiary); padding:2px 8px; border-radius:4px; font-size:0.8rem;">${kw.status}</span></td>
         `;
         kwTbody.appendChild(tr);
@@ -262,13 +231,17 @@
       expTbody.innerHTML = '';
       SEODashboard.experiments.forEach(exp => {
         const tr = document.createElement('tr');
+        const isWin = exp.verdict.toLowerCase().includes('win');
+        const isFail = exp.verdict.toLowerCase().includes('fail');
+        const verdictBg = isWin ? '#DCFCE7' : (isFail ? '#FEE2E2' : '#FEF3C7');
+        const verdictColor = isWin ? '#166534' : (isFail ? '#991B1B' : '#92400E');
         tr.innerHTML = `
           <td><code>${exp.id}</code></td>
           <td><strong>${exp.title}</strong><br><small style="color:var(--text-light);">${exp.page}</small></td>
           <td style="font-size:0.85rem;">${exp.hypothesis}</td>
           <td style="font-size:0.85rem;">${exp.variableChanged}</td>
-          <td><small style="color:var(--text-muted);">Baseline: ${exp.baselineCtr}</small><br><strong style="color:#166534;">Result: ${exp.currentCtr}</strong></td>
-          <td><span style="background:#DCFCE7; color:#166534; font-weight:700; padding:2px 8px; border-radius:6px; font-size:0.8rem;">${exp.verdict}</span></td>
+          <td><small style="color:var(--text-muted);">Baseline: ${exp.baselineCtr}</small><br><strong style="color:var(--text-main);">Result: ${exp.currentCtr}</strong></td>
+          <td><span style="background:${verdictBg}; color:${verdictColor}; font-weight:700; padding:2px 8px; border-radius:6px; font-size:0.8rem;">${exp.verdict}</span></td>
         `;
         expTbody.appendChild(tr);
       });

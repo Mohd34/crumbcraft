@@ -1,147 +1,304 @@
 /**
- * CrumbCraft SEO Analytics & Search Console Integration Engine
- * Tracks live site search performance, simulated GSC metrics, keyword momentum, and experiment logs.
+ * CrumbCraft Live SEO Performance Engine & Measurement Tracker
+ * Adheres strictly to the AI SEO Challenge Data Rules:
+ * GSC is primary source of truth. Pre-index baseline = zero. No simulated rankings.
  */
 
 const SEODashboard = {
-  // Baseline / Target Data Model for CrumbCraft
+  // Live Baseline (Day 0 - Awaiting Search Console Telemetry)
   siteSummary: {
-    domain: "crumbcraft.pages.dev",
-    status: "Production Ready / Indexing Active",
-    totalIndexedPages: 11,
-    crawledPages: 11,
-    mobileFriendlyScore: 100,
+    domain: "mohd34.github.io/crumbcraft",
+    status: "Production Live / Baseline Active",
+    totalIndexedPages: "Pending (Submitted 2026-09-24)",
+    crawledPages: 13,
+    mobileFriendlyScore: "100 (Pass)",
     coreWebVitals: {
-      lcp: "0.38s (Good)",
-      fid: "4ms (Good)",
-      cls: "0.00 (Good)"
+      ttfb: "71.7 ms (Good)",
+      lcp: "0.35 s (Good)",
+      cls: "0.00 (Good)",
+      inp: "<10 ms (Good)"
     },
     gscMetrics: {
-      totalImpressions: 14280,
-      totalClicks: 942,
-      averageCtr: 6.6,
-      averagePosition: 8.4
+      totalImpressions: 0,
+      totalClicks: 0,
+      averageCtr: "0.0%",
+      averagePosition: "Pending / Pre-Index"
     }
   },
 
-  // Tracked Keyword Data with Historical SERP Progression
+  // Tracked Primary & Secondary Keywords (22 Key Targets from keywords.json)
   keywords: [
     {
-      keyword: "desired dough temperature calculator",
-      url: "/ddt-calculator.html",
-      impressions: 4850,
-      clicks: 395,
-      ctr: 8.14,
-      avgPosition: 3.2,
-      trend: "+1.4 (Gaining)",
-      status: "Striking Distance (#3)"
+      keyword: "DDT calculator",
+      url: "ddt-calculator.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
+    },
+    {
+      keyword: "DDT calculator sourdough",
+      url: "ddt-calculator.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
     },
     {
       keyword: "sourdough hydration calculator",
-      url: "/index.html",
-      impressions: 5120,
-      clicks: 310,
-      ctr: 6.05,
-      avgPosition: 6.4,
-      trend: "+2.1 (Gaining)",
-      status: "Top 10"
+      url: "index.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
     },
     {
       keyword: "bakers percentage calculator",
-      url: "/index.html",
-      impressions: 2180,
-      clicks: 122,
-      ctr: 5.60,
-      avgPosition: 7.8,
-      trend: "+0.8 (Stable)",
-      status: "Top 10"
+      url: "index.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
+    },
+    {
+      keyword: "sourdough starter feeding calculator",
+      url: "starter-feeding-schedule.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
+    },
+    {
+      keyword: "flour protein calculator",
+      url: "flour-protein-calculator.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
+    },
+    {
+      keyword: "vital wheat gluten calculator",
+      url: "flour-protein-calculator.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
+    },
+    {
+      keyword: "sourdough proofing calculator",
+      url: "fermentation-calculator.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
+    },
+    {
+      keyword: "bread pan dough weight calculator",
+      url: "loaf-pan-calculator.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
+    },
+    {
+      keyword: "bakers percentage to grams calculator",
+      url: "index.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
     },
     {
       keyword: "how to cool down sourdough water temperature ice calculator",
-      url: "/ddt-calculator.html",
-      impressions: 640,
-      clicks: 88,
-      ctr: 13.75,
-      avgPosition: 1.8,
-      trend: "+3.2 (Breakout)",
-      status: "Featured Snippet Potential"
-    },
-    {
-      keyword: "vital wheat gluten to all purpose flour calculator",
-      url: "/flour-protein-calculator.html",
-      impressions: 980,
-      clicks: 64,
-      ctr: 6.53,
-      avgPosition: 4.1,
-      trend: "+1.9 (Gaining)",
-      status: "Top 5"
-    },
-    {
-      keyword: "sourdough starter feeding ratio calculator",
-      url: "/starter-feeding-schedule.html",
-      impressions: 1420,
-      clicks: 72,
-      ctr: 5.07,
-      avgPosition: 8.9,
-      trend: "+0.5 (Gaining)",
-      status: "Top 10"
-    },
-    {
-      keyword: "bread pan size dough weight calculator",
-      url: "/loaf-pan-calculator.html",
-      impressions: 740,
-      clicks: 41,
-      ctr: 5.54,
-      avgPosition: 5.3,
-      trend: "+1.1 (Gaining)",
-      status: "Top 10"
+      url: "ddt-calculator.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
     },
     {
       keyword: "sourdough bulk fermentation time temperature chart",
-      url: "/fermentation-calculator.html",
-      impressions: 1890,
-      clicks: 86,
-      ctr: 4.55,
-      avgPosition: 11.2,
-      trend: "+4.1 (Surging)",
-      status: "Opportunity Zone (#11)"
+      url: "fermentation-calculator.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
+    },
+    {
+      keyword: "1 1 1 vs 1 2 2 starter ratio",
+      url: "starter-feeding-schedule.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
+    },
+    {
+      keyword: "1 5 5 sourdough starter feeding ratio calculator",
+      url: "starter-feeding-schedule.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
+    },
+    {
+      keyword: "how long to bulk ferment at 68 degrees",
+      url: "fermentation-calculator.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
+    },
+    {
+      keyword: "how long to bulk ferment at 78 degrees",
+      url: "fermentation-calculator.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
+    },
+    {
+      keyword: "vital wheat gluten to all purpose flour calculator",
+      url: "flour-protein-calculator.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
+    },
+    {
+      keyword: "active dry yeast to instant yeast conversion calculator",
+      url: "yeast-converter.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
+    },
+    {
+      keyword: "sourdough discard substitution calculator",
+      url: "yeast-converter.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
+    },
+    {
+      keyword: "how much dough for 9x5 loaf pan",
+      url: "loaf-pan-calculator.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
+    },
+    {
+      keyword: "total hydration including levain calculator",
+      url: "index.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
+    },
+    {
+      keyword: "sourdough rise percentage calculator aliquot jar",
+      url: "fermentation-calculator.html",
+      impressions: 0,
+      clicks: 0,
+      ctr: "0.0%",
+      avgPosition: "Pending",
+      trend: "Baseline (Day 0)",
+      status: "Submitted / Awaiting Crawl"
     }
   ],
 
-  // Structured SEO Experiments Log
+  // Structured SEO Experiments Log adhering strictly to Live Data rules
   experiments: [
     {
       id: "EXP-001",
-      title: "Title Tag & Meta Description CTR Optimization on DDT Calculator",
-      page: "/ddt-calculator.html",
-      hypothesis: "Adding 'Ice Water Math' and '3 & 4 Factor' directly to the title and snippet increases SERP CTR from 5.5% to >8.0% for summer baking intent.",
-      variableChanged: "Title tag & meta description copy updated to highlight unique ice calculation feature.",
-      baselineCtr: "5.5%",
-      currentCtr: "8.14%",
-      verdict: "WIN (+48% CTR increase)",
-      status: "Adopted in Production"
+      title: "Title Tag & Meta Description Precision for DDT Calculator",
+      page: "ddt-calculator.html",
+      hypothesis: "Focusing title on 'Ice Water Math' and '3 & 4 Factor Sourdough' achieves CTR >6.0% upon initial indexation.",
+      variableChanged: "Precision title tag emphasizing ice water math for summer baking.",
+      dateInitiated: "2026-09-24",
+      baselineCtr: "0.0% (Pre-Index)",
+      currentCtr: "Pending GSC data",
+      verdict: "INCONCLUSIVE — insufficient data",
+      decision: "Active Monitoring"
     },
     {
       id: "EXP-002",
-      title: "3-Way Hydration Callout Schema Optimization",
-      page: "/index.html",
-      hypothesis: "Adding FAQPage schema specifically defining Recipe Hydration vs Starter Hydration vs Total True Hydration captures Google's People Also Ask (PAA) rich snippet.",
-      variableChanged: "Injected structured FAQ schema and 3-way visual audit box.",
-      baselineCtr: "4.8%",
-      currentCtr: "6.05%",
-      verdict: "WIN (PAA box triggered)",
-      status: "Adopted in Production"
+      title: "Contextual Internal Link Bridge: Hydration to Starter Planner",
+      page: "index.html -> starter-feeding-schedule.html",
+      hypothesis: "In-tool contextual bridge passes internal PageRank and increases crawl discovery rate for starter schedule page.",
+      variableChanged: "Contextual text link placed directly below 3-way hydration audit box.",
+      dateInitiated: "2026-09-24",
+      baselineCtr: "0.0% (Pre-Index)",
+      currentCtr: "Pending GSC data",
+      verdict: "INCONCLUSIVE — insufficient data",
+      decision: "Active Monitoring"
     },
     {
       id: "EXP-003",
-      title: "Internal Breadcrumb & Contextual Linking Architecture",
-      page: "Sitewide",
-      hypothesis: "Cross-linking the Bulk Fermentation Chart with the DDT strike water calculator reduces bounce rate and increases pages per session from 1.3 to >2.2.",
-      variableChanged: "Added contextual breadcrumbs and cross-tool recommendations.",
-      baselineCtr: "1.3 pages/session",
-      currentCtr: "2.4 pages/session",
-      verdict: "WIN (High dwell time)",
-      status: "Adopted in Production"
+      title: "Search-Intent FAQPage Schema on Bulk Fermentation Guide",
+      page: "fermentation-calculator.html",
+      hypothesis: "Specific FAQ schema answering 68°F and 78°F bulk fermentation timing triggers PAA snippet on Google.",
+      variableChanged: "Structured FAQPage JSON-LD schema matching exact search query strings.",
+      dateInitiated: "2026-09-24",
+      baselineCtr: "0.0% (Pre-Index)",
+      currentCtr: "Pending GSC data",
+      verdict: "INCONCLUSIVE — insufficient data",
+      decision: "Active Monitoring"
+    },
+    {
+      id: "EXP-004",
+      title: "Position 8–20 Strike Zone Sniping Protocol",
+      page: "TBD based on Search Console data",
+      hypothesis: "For queries entering positions 8–20 with >100 impressions but CTR <3.0%, title numerical refinement doubles CTR.",
+      variableChanged: "Awaiting impression threshold trigger.",
+      dateInitiated: "2026-09-24",
+      baselineCtr: "0.0% (Pre-Index)",
+      currentCtr: "Pending GSC data",
+      verdict: "INCONCLUSIVE — insufficient data",
+      decision: "Standing Protocol"
     }
   ]
 };
